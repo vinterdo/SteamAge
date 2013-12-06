@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectGuid>{52B29B92-1EAD-4E19-B159-4C526456FA1E}</ProjectGuid>
+    <ProjectTypeGuids>{6D335F3A-9D43-41b4-9D22-F6F17C4BE596};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FarseerPhysics</RootNamespace>
+    <AssemblyName>FarseerPhysics</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <XnaFrameworkVersion>v4.0</XnaFrameworkVersion>
+    <XnaPlatform>Windows</XnaPlatform>
+    <XnaProfile>Reach</XnaProfile>
+    <XnaCrossPlatformGroupID>b13ffba4-a4d7-4cff-ac97-c70a362fc74d</XnaCrossPlatformGroupID>
+    <XnaOutputType>Library</XnaOutputType>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>false</XnaCompressContent>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;WINDOWS</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <NoStdLib>true</NoStdLib>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+    <PlatformTarget>x86</PlatformTarget>
+    <XnaCompressContent>true</XnaCompressContent>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.GamerServices, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="mscorlib" />
+    <Reference Include="System" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Net" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Physics\Collision\Collision.cs" />
+    <Compile Include="Physics\Collision\Distance.cs" />
+    <Compile Include="Physics\Collision\DynamicTree.cs" />
+    <Compile Include="Physics\Collision\DynamicTreeBroadPhase.cs" />
+    <Compile Include="Physics\Collision\IBroadPhase.cs" />
+    <Compile Include="Physics\Collision\QuadTree.cs" />
+    <Compile Include="Physics\Collision\QuadTreeBroadPhase.cs" />
+    <Compile Include="Physics\Collision\Shapes\CircleShape.cs" />
+    <Compile Include="Physics\Collision\Shapes\EdgeShape.cs" />
+    <Compile Include="Physics\Collision\Shapes\LoopShape.cs" />
+    <Compile Include="Physics\Collision\Shapes\PolygonShape.cs" />
+    <Compile Include="Physics\Collision\Shapes\Shape.cs" />
+    <Compile Include="Physics\Collision\TimeOfImpact.cs" />
+    <Compile Include="Physics\Common\ConvexHull\ChainHull.cs" />
+    <Compile Include="Physics\Common\ConvexHull\GiftWrap.cs" />
+    <Compile Include="Physics\Common\ConvexHull\Melkman.cs" />
+    <Compile Include="Physics\Common\Decomposition\BayazitDecomposer.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDTDecomposer.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\DelaunayTriangle.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\AdvancingFront.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\AdvancingFrontNode.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweep.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepConstraint.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepContext.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\DTSweepPointComparator.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Delaunay\Sweep\PointOnEdgeException.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\ITriangulatable.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Orientation.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Polygon\Polygon.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Polygon\PolygonPoint.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Polygon\PolygonSet.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Sets\ConstrainedPointSet.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Sets\PointSet.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\TriangulationConstraint.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\TriangulationContext.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\TriangulationMode.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\TriangulationPoint.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\TriangulationUtil.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Util\FixedArray3.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Util\FixedBitArray3.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Util\PointGenerator.cs" />
+    <Compile Include="Physics\Common\Decomposition\CDT\Util\PolygonGenerator.cs" />
+    <Compile Include="Physics\Common\Decomposition\EarclipDecomposer.cs" />
+    <Compile Include="Physics\Common\Decomposition\FlipcodeDecomposer.cs" />
+    <Compile Include="Physics\Common\Decomposition\SeidelDecomposer.cs" />
+    <Compile Include="Physics\Common\FixedArray.cs" />
+    <Compile Include="Physics\Common\HashSet.cs" />
+    <Compile Include="Physics\Common\LineTools.cs" />
+    <Compile Include="Physics\Common\Math.cs" />
+    <Compile Include="Physics\Common\Path.cs" />
+    <Compile Include="Physics\Common\PathManager.cs" />
+    <Compile Include="Physics\Common\PhysicsLogic\Explosion.cs" />
+    <Compile Include="Physics\Common\PhysicsLogic\PhysicsLogic.cs" />
+    <Compile Include="Physics\Common\PolygonManipulation\CuttingTools.cs" />
+    <Compile Include="Physics\Common\PolygonManipulation\SimplifyTools.cs" />
+    <Compile Include="Physics\Common\PolygonManipulation\YuPengClipper.cs" />
+    <Compile Include="Physics\Common\PolygonTools.cs" />
+    <Compile Include="Physics\Common\Serialization.cs" />
+    <Compile Include="Physics\Common\TextureTools\MarchingSquares.cs" />
+    <Compile Include="Physics\Common\TextureTools\MSTerrain.cs" />
+    <Compile Include="Physics\Common\TextureTools\TextureConverter.cs" />
+    <Compile Include="Physics\Common\Vertices.cs" />
+    <Compile Include="Physics\Controllers\AbstractForceController.cs" />
+    <Compile Include="Physics\Controllers\BuoyancyController.cs" />
+    <Compile Include="Physics\Controllers\Controller.cs" />
+    <Compile Include="Physics\Controllers\GravityController.cs" />
+    <Compile Include="Physics\Controllers\SimpleWindForce.cs" />
+    <Compile Include="Physics\Controllers\VelocityLimitController.cs" />
+    <Compile Include="Physics\DebugView.cs" />
+    <Compile Include="Physics\DebugViewXNA.cs" />
+    <Compile Include="Physics\Dynamic\Body.cs" />
+    <Compile Include="Physics\Dynamic\BreakableBody.cs" />
+    <Compile Include="Physics\Dynamic\ContactManager.cs" />
+    <Compile Include="Physics\Dynamic\Contacts\Contact.cs" />
+    <Compile Include="Physics\Dynamic\Contacts\ContactSolver.cs" />
+    <Compile Include="Physics\Dynamic\Fixture.cs" />
+    <Compile Include="Physics\Dynamic\Island.cs" />
+    <Compile Include="Physics\Dynamic\Joints\AngleJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\DistanceJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedAngleJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedDistanceJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedFrictionJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedLineJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedMouseJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedPrismaticJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FixedRevoluteJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\FrictionJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\GearJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\Joint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\LineJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\PrismaticJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\PulleyJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\RevoluteJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\RopeJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\SliderJoint.cs" />
+    <Compile Include="Physics\Dynamic\Joints\WeldJoint.cs" />
+    <Compile Include="Physics\Dynamic\TimeStep.cs" />
+    <Compile Include="Physics\Dynamic\World.cs" />
+    <Compile Include="Physics\Dynamic\WorldCallbacks.cs" />
+    <Compile Include="Physics\Factories\BodyFactory.cs" />
+    <Compile Include="Physics\Factories\FixtureFactory.cs" />
+    <Compile Include="Physics\Factories\JointFactory.cs" />
+    <Compile Include="Physics\Factories\LinkFactory.cs" />
+    <Compile Include="Physics\PrimitiveBatch.cs" />
+    <Compile Include="Physics\Settings.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
+  <!--
+      To modify your build process, add your task inside one of the targets below and uncomment it. 
+      Other similar extension points exist, see Microsoft.Common.targets.
+      <Target Name="BeforeBuild">
+      </Target>
+      <Target Name="AfterBuild">
+      </Target>
+    -->
+</Project>
