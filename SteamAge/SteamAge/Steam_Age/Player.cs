@@ -174,9 +174,11 @@ namespace SteamAge
                 if (Fix != null && Fix.Body.BodyType == BodyType.Dynamic)
                 {
                     PlayerChar.CatchedFixture = Fix;
+                    Fix.Body.Awake = true;
                     PlayerChar.CatchingJoint = JointFactory.CreateFixedDistanceJoint(World.PhysicalWorld, Fix.Body, Vector2.Zero, GeneralManager.MousePos + Camera);
-                    (PlayerChar.CatchingJoint as FixedDistanceJoint).Length = 1f;
-                    (PlayerChar.CatchingJoint as FixedDistanceJoint).DampingRatio = 10f;
+                    (PlayerChar.CatchingJoint as FixedDistanceJoint).Length = 0f;
+                    (PlayerChar.CatchingJoint as FixedDistanceJoint).DampingRatio = 2f;
+                    (PlayerChar.CatchingJoint as FixedDistanceJoint).Frequency = 200;
                 }
             }
             else

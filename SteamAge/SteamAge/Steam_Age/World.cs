@@ -78,7 +78,7 @@ namespace SteamAge
 
             ParentScreen = WorldScreen;
 
-            PhysicalWorld = new World(new Vector2(0, 9.81f));
+            PhysicalWorld = new World(new Vector2(0, 16 * 9.81f));
 
             //Generating Spawn Area
             Generator.Generate(new Vector2(0,0));
@@ -372,6 +372,23 @@ namespace SteamAge
             else
             {
                 return Block.BlockRegistry[0].Value;
+            }
+        }
+
+        public Fixture GetBlockFixture(int x, int y)
+        {
+
+
+            Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
+
+
+            if (this.Chunks.ContainsKey(ChunkV))
+            {
+                return Chunks[ChunkV].BlockFixtures[x - (int)ChunkV.X * ChunkSize, y - (int)ChunkV.Y * ChunkSize];
+            }
+            else
+            {
+                return null;
             }
         }
 

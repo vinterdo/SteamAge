@@ -89,7 +89,8 @@
     <Compile Include="Steam_Age\Entities\DynamicBody.cs" />
     <Compile Include="Steam_Age\Entities\Entity.cs" />
     <Compile Include="Steam_Age\Entities\Flora\Tree.cs" />
-    <Compile Include="Steam_Age\Entities\Flora\TreePart.cs" />
+    <Compile Include="Steam_Age\Entities\Flora\TreeBranch.cs" />
+    <Compile Include="Steam_Age\Entities\Flora\TreePartLog.cs" />
     <Compile Include="Steam_Age\Generators\BasicTerrainGenerator.cs" />
     <Compile Include="Steam_Age\Generators\CaveGenerator.cs" />
     <Compile Include="Steam_Age\Generators\Generator.cs" />

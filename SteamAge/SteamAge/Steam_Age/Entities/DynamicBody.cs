@@ -40,7 +40,7 @@ namespace SteamAge
             AABB test;
             BodyFixture.GetAABB(out test, 0);
             Rectangle BoundingRect = new Rectangle((int)BodyFixture.Body.Position.X - (int)Math.Abs(test.LowerBound.X - test.UpperBound.X) / 2 - (int)CameraPos.X, (int)BodyFixture.Body.Position.Y - (int)Math.Abs(test.LowerBound.Y - test.UpperBound.Y) / 2 - (int)CameraPos.Y, (int)Math.Abs(test.LowerBound.X - test.UpperBound.X), (int)Math.Abs(test.LowerBound.Y - test.UpperBound.Y));
-            SpriteBatch.Draw(Texture, BoundingRect/*BodyFixture.Body.Position*/, null, Color.White, BodyFixture.Body.Rotation, BodyFixture.Body.LocalCenter, SpriteEffects.None, 0.5f);
+            SpriteBatch.Draw(Texture, BoundingRect/*BodyFixture.Body.Position*/, null, Color.White, BodyFixture.Body.Rotation, BodyFixture.Body.LocalCenter * 2, SpriteEffects.None, 0.5f);
         }
     }
 }

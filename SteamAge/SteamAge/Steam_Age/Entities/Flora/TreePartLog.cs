@@ -21,11 +21,10 @@ using System.Diagnostics;
 using VAPI.FluidSim;
 using Krypton;
 using Krypton.Lights;
-using SteamAge.Generators;
 
 namespace SteamAge.Entities
 {
-    public class TreePart
+    public class TreePartLog
     {
         public Fixture Fixture;
         public Texture2D Tex;
@@ -50,7 +49,7 @@ namespace SteamAge.Entities
             }
         }
 
-        public TreePart(Vector2 Size, GameWorld GameWorld, Texture2D Tex) 
+        public TreePartLog(Vector2 Size, GameWorld GameWorld, Texture2D Tex) 
         {
             Body Body = BodyFactory.CreateBody(GameWorld.PhysicalWorld);
             Body.BodyType = BodyType.Dynamic;
