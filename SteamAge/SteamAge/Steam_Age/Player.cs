@@ -137,21 +137,19 @@ namespace SteamAge
             {
                 if (PlayerHotbar[SelectedStack].ItemStack != null && PlayerHotbar[SelectedStack].ItemStack.Item is Block)
                 {
-                    if (PlayerChar.PlaceBlock((PlayerHotbar[SelectedStack].ItemStack.Item as Block), (GeneralManager.MousePos + Camera) / 32))
-                    {
-                        PlayerHotbar[SelectedStack].ItemStack.Count--;
-                        if (PlayerHotbar[SelectedStack].ItemStack.Count == 0)
-                        {
-                            PlayerHotbar[SelectedStack].ItemStack = null;
-                        }
-                    }
-
+                    PlaceBlock();
+                    Value = true;
+                }
+                else if(World.GetBlockTE((GeneralManager.MousePos + Camera) / 32) != null)
+                {
+                    UseBlock((GeneralManager.MousePos + Camera) / 32);
+                    Value = true;
                 }
                 else
                 {
                     CatchBody();
+                    Value = true;
                 }
-                Value = true;
             }
             else
             {
@@ -163,6 +161,19 @@ namespace SteamAge
                 }
             }
             return Value;
+        }
+
+        private void PlaceBlock()
+        {
+
+            if (PlayerChar.PlaceBlock((PlayerHotbar[SelectedStack].ItemStack.Item as Block), (GeneralManager.MousePos + Camera) / 32))
+            {
+                PlayerHotbar[SelectedStack].ItemStack.Count--;
+                if (PlayerHotbar[SelectedStack].ItemStack.Count == 0)
+                {
+                    PlayerHotbar[SelectedStack].ItemStack = null;
+                }
+            }
         }
 
         private void CatchBody()
@@ -187,7 +198,19 @@ namespace SteamAge
             }
         }
 
+        private void UseBlock(Vector2 BlockPos)
+        {
+            TileEntity TE = World.GetBlockTE((int)BlockPos.X, (int)BlockPos.Y);
+            if (TE is TileEntities.IInventoryTE)
+            {
+                (TE as TileEntities.IInventoryTE).OpenGUI();
+            }
+        }
 
+        private void UseBlock(int x, int y)
+        {
+            UseBlock(new Vector2(x, y));
+        }
 
         public void AddToInv(ItemStack AddStack)
         {

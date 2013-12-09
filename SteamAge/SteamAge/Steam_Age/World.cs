@@ -358,8 +358,6 @@ namespace SteamAge
 
         public Block GetBlock(int x, int y)
         {
-            
-            
             Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
 
 
@@ -375,10 +373,7 @@ namespace SteamAge
 
         public Fixture GetBlockFixture(int x, int y)
         {
-
-
             Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
-
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
@@ -388,6 +383,25 @@ namespace SteamAge
             {
                 return null;
             }
+        }
+
+        public TileEntity GetBlockTE(int x, int y)
+        {
+            Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
+
+            if (this.Chunks.ContainsKey(ChunkV))
+            {
+                return Chunks[ChunkV].TileEntities[x - (int)ChunkV.X * ChunkSize, y - (int)ChunkV.Y * ChunkSize];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public TileEntity GetBlockTE(Vector2 Vec)
+        {
+            return GetBlockTE((int)Vec.X, (int)Vec.Y);
         }
 
         public Block GetBackgroundBlock(int x, int y)

@@ -24,16 +24,19 @@ namespace SteamAge.TileEntities
             this.Entity = new CraftingTableEntity(GameWorld);
             this.TileBlock = Block.GetBlock(1001);
             this.Name = "Textures/TileEntities/CraftingTable";
+
+            Inventory = new TileEntityGUI(new Rectangle(100, 100, 500, 500));
+            GameWorld.ParentScreen.AddGUI(Inventory);
         }
 
         public void Close()
         {
-            Inventory.Visible = false;
+            Inventory.Close();
         }
 
         public void OpenGUI()
         {
-            Inventory.Visible = false;
+            Inventory.Open();
         }
 
         public TileEntityGUI GetGUI()

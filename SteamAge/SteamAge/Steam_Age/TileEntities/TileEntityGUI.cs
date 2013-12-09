@@ -20,14 +20,27 @@ namespace SteamAge.TileEntities
         public TileEntityGUI(Rectangle Position)
             : base(Position, new Color(0.5f, 0.5f, 0.5f, 0.5f))
         {
+            _ItemSlots = new List<ItemSlot>();
+        }
+
+        public override bool HandleInput()
+        {
+            if (GeneralManager.CheckKeyEdge(Keys.Escape))
+            {
+                this.Close();
+                return true;
+            }
+            return false;
         }
 
         public virtual void Open()
         {
+            this.Visible = true;
         }
 
         public virtual void Close()
         {
+            this.Visible = false;
         }
 
         public virtual void Destroy()
