@@ -200,7 +200,7 @@ namespace SteamAge
             if (!World.RaycastAny(Position + new Vector2(CollisionX / 2, CollisionY / 2), Vect /32))
             {
                 World.GetBlock(Vect).Drop.PollDrop(Player);
-                World.SetBlock(Vect, Block.BlockRegistry[0].Value);
+                World.SetBlock(Vect, Block.GetBlock(0));
                 return true;
             }
             return false;
@@ -211,7 +211,7 @@ namespace SteamAge
         {
             if (!World.RaycastAny(Position + new Vector2(CollisionX / 2, CollisionY / 2), Vect / 32))
             {
-                if (World.GetBlock(Vect) == Block.BlockRegistry[0].Value)
+                if (World.GetBlock(Vect) == Block.GetBlock(0))
                 {
                     if (B is IEntityBlock)
                     {
@@ -234,7 +234,7 @@ namespace SteamAge
         {
             if (!World.RaycastAny(Position + new Vector2(CollisionX/2, CollisionY/2),Vect /32)&& !World.GetBlock(Vect).IsSolid)
             {
-                World.SetBackgroundBlock(Vect, Block.BlockRegistry[0].Value);
+                World.SetBackgroundBlock(Vect, Block.GetBlock(0));
                 return true;
             }
             return false;

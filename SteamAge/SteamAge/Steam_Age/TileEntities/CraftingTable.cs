@@ -22,7 +22,7 @@ namespace SteamAge.TileEntities
             : base(GameWorld, "CraftingTable")
         {
             this.Entity = new CraftingTableEntity(GameWorld);
-            this.TileBlock = Block.BlockRegistry[5].Value;
+            this.TileBlock = Block.GetBlock(5);
             this.Name = "Textures/TileEntities/CraftingTable";
         }
 

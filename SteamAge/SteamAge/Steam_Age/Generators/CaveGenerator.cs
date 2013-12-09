@@ -71,7 +71,7 @@ namespace SteamAge.Generators
                             {
                                 if (Math.Pow(x1 - x, 2) + Math.Pow(y1 - y, 2) <= Math.Pow(Radius, 2))
                                 {
-                                    C.Blocks[(int)MathHelper.Clamp(x1, 0, 15), (int)MathHelper.Clamp(y1, 0, 15)] = Block.BlockRegistry[0].Value;
+                                    C.Blocks[(int)MathHelper.Clamp(x1, 0, 15), (int)MathHelper.Clamp(y1, 0, 15)] = Block.GetBlock(0);
                                 }
                             }
                         }
@@ -86,7 +86,7 @@ namespace SteamAge.Generators
                     if (C.Blocks[(int)MathHelper.Clamp(x - 1, 0, 15), (int)MathHelper.Clamp(y, 0, 15)].Id == 0 &&
                        C.Blocks[(int)MathHelper.Clamp(x + 1, 0, 15), (int)MathHelper.Clamp(y, 0, 15)].Id == 0)
                     {
-                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.BlockRegistry[0].Value;
+                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.GetBlock(0);
                     }
 
 
@@ -102,7 +102,7 @@ namespace SteamAge.Generators
                         C.Blocks[(int)MathHelper.Clamp(x - 1, 0, 15), (int)MathHelper.Clamp(y - 1, 0, 15)].Id == 1 &&
                        C.Blocks[(int)MathHelper.Clamp(x + 1, 0, 15), (int)MathHelper.Clamp(y + 1, 0, 15)].Id == 1)
                     {
-                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.BlockRegistry[2].Value;
+                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.GetBlock(2);
                     }
 
 

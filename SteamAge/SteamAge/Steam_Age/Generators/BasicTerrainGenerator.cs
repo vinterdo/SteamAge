@@ -39,7 +39,7 @@ namespace SteamAge.Generators
                 {
                     for (int x = 0; x < 16; x++)
                     {
-                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.BlockRegistry[0].Value;
+                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.GetBlock(0);
 
                     }
                 }
@@ -75,11 +75,11 @@ namespace SteamAge.Generators
 
                     if (((Perlin[x, 0] + Perlin[(int)MathHelper.Clamp(x - 1, 0, 15), 0] + Perlin[(int)MathHelper.Clamp(x + 1, 0, 15), 0]) / 3) * -32 > C.Position.Y * 16 + y +12)
                     {
-                        C.Blocks[x, y] = Block.BlockRegistry[0].Value;
+                        C.Blocks[x, y] = Block.GetBlock(0);
                     }
                     else
                     {
-                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.BlockRegistry[2].Value;
+                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.GetBlock(2);
                     }
 
                 }
@@ -96,7 +96,7 @@ namespace SteamAge.Generators
 
                     if ((((Perlin[x, 0] + Perlin[(int)MathHelper.Clamp(x - 1, 0, 15), 0] + Perlin[(int)MathHelper.Clamp(x + 1, 0, 15), 0]) / 3) * -32 > C.Position.Y * 16 + y + 8) && C.Blocks[x, y].IsSolid)
                     {
-                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.BlockRegistry[1].Value;
+                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.GetBlock(1);
                     }
 
                 }
@@ -113,7 +113,7 @@ namespace SteamAge.Generators
 
                     if ((((Perlin[x, 0] + Perlin[(int)MathHelper.Clamp(x - 1, 0, 15), 0] + Perlin[(int)MathHelper.Clamp(x + 1, 0, 15), 0]) / 3) * -32 > C.Position.Y * 16 + y + 11) && C.Blocks[x, y].IsSolid)
                     {
-                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.BlockRegistry[3].Value;
+                        C.Blocks[(int)MathHelper.Clamp(x, 0, 15), (int)MathHelper.Clamp(y, 0, 15)] = Block.GetBlock(3);
                     }
 
                 }

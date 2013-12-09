@@ -31,7 +31,7 @@ namespace SteamAge.TileEntities
             this.Entity = new TorchEntity(GameWorld, Position);
             this.Position = Position;
 
-            this.TileBlock = Block.BlockRegistry[4].Value;
+            this.TileBlock = Block.GetBlock(4);
             
             this.Name = "Textures/TileEntities/Torch";
         }

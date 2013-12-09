@@ -62,7 +62,6 @@ namespace SteamAge
         public GameWorld(WorldScreen WorldScreen)
         {
 
-            Block.RegisterBlock(new TileEntities.TorchBlock());
 
             LightSystem = new KryptonEngine(GeneralManager.Game, "Effects/KryptonEffect");
             LightSystem.Initialize();
@@ -86,7 +85,7 @@ namespace SteamAge
             InitLightSystem();
 
             TestPlayer = new Player(this, true);
-            TestPlayer.AddToInv(new ItemStack(Block.BlockRegistry[4].Value, 64));
+            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(4), 64));
 
             //Fluid = new FluidSimulation(PhysicalWorld);
 
@@ -371,7 +370,7 @@ namespace SteamAge
             }
             else
             {
-                return Block.BlockRegistry[0].Value;
+                return Block.GetBlock(0);
             }
         }
 
@@ -405,7 +404,7 @@ namespace SteamAge
             }
             else
             {
-                return Block.BlockRegistry[0].Value;
+                return Block.GetBlock(0);
             }
         }
 

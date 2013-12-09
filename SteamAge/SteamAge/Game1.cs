@@ -45,15 +45,22 @@ namespace SteamAge
             GeneralManager.Initalize(Content, graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, this);
 
             LoadTextures();
-
-            Block.RegisterBlock(new Blocks.BlockAir());
-            Block.RegisterBlock(new Blocks.BlockDirt());
-            Item.RegisterItem(new Items.CoalItem());
+            RegisterBlocksAndItems();
 
             LoadMods();
             GeneralManager.CurrentScreen = new ProfileSelectionScreen(this, GeneralManager.ScreenX, GeneralManager.ScreenY);
             
             base.Initialize();
+        }
+
+        private static void RegisterBlocksAndItems()
+        {
+
+            Block.RegisterBlock(new Blocks.BlockAir());
+            Block.RegisterBlock(new Blocks.BlockDirt());
+            Item.RegisterItem(new Items.CoalItem());
+
+            Block.RegisterBlock(new TileEntities.TorchBlock());
         }
 
         private void LoadSettings()

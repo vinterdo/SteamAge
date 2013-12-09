@@ -22,7 +22,8 @@ namespace SteamAge
     public class Block:Item
     {
 
-        public static List<KeyValuePair<int, Block>> BlockRegistry = new List<KeyValuePair<int, Block>>();
+        //public static List<KeyValuePair<int, Block>> BlockRegistry = new List<KeyValuePair<int, Block>>();
+        private static Dictionary<int, Block> BlockRegist = new Dictionary<int,Block>();
         public string Name;
         public bool IsSolid;
         public BlockState State = BlockState.NoEdge;
@@ -39,7 +40,19 @@ namespace SteamAge
             Textures = new KeyValuePair<BlockState, string>[16];
             ShapeVertices = new Vertices();
             Drop = new DropDefinition();
-            
+        }
+
+        public static Block GetBlock(int Key)
+        {
+            try
+            {
+                return BlockRegist[Key];
+            }
+            catch (KeyNotFoundException e)
+            {
+                Logger.Write("Block key " + Key + " was not found in BlockRegistry, make sure you are using proper key/registered block before calling GetBlock");
+                return BlockRegist[0];
+            }
         }
 
         public enum BlockState
@@ -66,14 +79,16 @@ namespace SteamAge
         {
             B.LoadTextures();
             B.CreateShape();
-            BlockRegistry.Add(new KeyValuePair<int, Block>(B.Id, B));
+            BlockRegist.Add(B.Id, B);
+            //BlockRegistry.Add(new KeyValuePair<int, Block>(B.Id, B));
         }
 
         public static void RegisterBlock(TileEntity TE)
         {
             TE.TileBlock.LoadTextures();
             TE.TileBlock.CreateShape();
-            BlockRegistry.Add(new KeyValuePair<int, Block>(TE.TileBlock.Id, TE.TileBlock));
+            //BlockRegistry.Add(new KeyValuePair<int, Block>(TE.TileBlock.Id, TE.TileBlock));
+            BlockRegist.Add(TE.TileBlock.Id, TE.TileBlock);
         }
 
         public override void DrawIcon(SpriteBatch SpriteBatch, Rectangle Position)

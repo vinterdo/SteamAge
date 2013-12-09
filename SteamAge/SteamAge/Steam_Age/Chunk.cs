@@ -50,8 +50,8 @@ namespace SteamAge
             {
                 for (int x = 0; x < GameWorld.ChunkSize; x++)
                 {
-                    Blocks[x,y] = Block.BlockRegistry[2].Value;
-                    BackgroundBlocks[x, y] = (Position.Y < 0 )? Block.BlockRegistry[0].Value : Block.BlockRegistry[2].Value;
+                    Blocks[x,y] = Block.GetBlock(2);
+                    BackgroundBlocks[x, y] = (Position.Y < 0 )? Block.GetBlock(0) : Block.GetBlock(2);
                     
                 }
             }

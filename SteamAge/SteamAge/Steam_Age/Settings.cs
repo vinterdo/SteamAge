@@ -28,14 +28,24 @@ namespace VAPI
         public void Load(string Path)
         {
             XmlSerializer Serializer = new XmlSerializer(typeof(GameSettings));
-            GameSettings TmpSettings = (GameSettings)Serializer.Deserialize(new StreamReader(Path));
+            GameSettings GameSettings;
+            try
+            {
+                GameSettings = (GameSettings)Serializer.Deserialize(new StreamReader(Path));
+            }
+            catch (Exception e)
+            {
+                Logger.Write("Deserialization of settings file failed, make sure its proper XML format");
+                Logger.Write(e.StackTrace.ToString());
+                GameSettings = new GameSettings();
+            }
 
-            this.DebugMode = TmpSettings.DebugMode;
-            this.EnableLogging = TmpSettings.EnableLogging;
-            this.FullScreen = TmpSettings.FullScreen;
-            this.ParticlesMultipler = TmpSettings.ParticlesMultipler;
-            this.ResX = TmpSettings.ResX;
-            this.ResY = TmpSettings.ResY;
+            this.DebugMode = GameSettings.DebugMode;
+            this.EnableLogging = GameSettings.EnableLogging;
+            this.FullScreen = GameSettings.FullScreen;
+            this.ParticlesMultipler = GameSettings.ParticlesMultipler;
+            this.ResX = GameSettings.ResX;
+            this.ResY = GameSettings.ResY;
         }
 
         public void Save(string Path)

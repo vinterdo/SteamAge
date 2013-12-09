@@ -90,7 +90,7 @@ namespace SteamAge
             }
 
 
-            PlayerInv[0].ItemStack = new ItemStack(Block.BlockRegistry[1].Value, 12);
+            PlayerInv[0].ItemStack = new ItemStack(Block.GetBlock(1), 12);
         }
 
         public void Update(GameTime GameTime, Vector2 Camera)
