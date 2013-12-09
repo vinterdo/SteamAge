@@ -54,6 +54,7 @@ namespace SteamAge
                 Logger.Write(e.StackTrace.ToString());
                 return BlockRegist[0];
             }
+            
         }
 
         public enum BlockState
@@ -89,7 +90,15 @@ namespace SteamAge
             TE.TileBlock.LoadTextures();
             TE.TileBlock.CreateShape();
             //BlockRegistry.Add(new KeyValuePair<int, Block>(TE.TileBlock.Id, TE.TileBlock));
-            BlockRegist.Add(TE.TileBlock.Id, TE.TileBlock);
+            try
+            {
+                BlockRegist.Add(TE.TileBlock.Id, TE.TileBlock);
+            }
+            catch (ArgumentException e)
+            {
+                Logger.Write("Failed to add new Block key, probably it was already registered or you are calling register in wrong place");
+                Logger.Write(e.StackTrace.ToString());
+            }
         }
 
         public override void DrawIcon(SpriteBatch SpriteBatch, Rectangle Position)

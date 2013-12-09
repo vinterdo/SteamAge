@@ -84,6 +84,7 @@ namespace SteamAge
 
             TestPlayer = new Player(this, true);
             TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1000), 64));
+            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1001), 64));
 
             //Fluid = new FluidSimulation(PhysicalWorld);
 

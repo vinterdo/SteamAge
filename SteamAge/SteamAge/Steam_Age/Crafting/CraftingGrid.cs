@@ -33,7 +33,7 @@ namespace SteamAge.Crafting
             }
         }
 
-        public CraftingGrid(Vector2 Position)
+        public CraftingGrid(GameWorld GameWorld, Vector2 Position)
         {
             this.Position = Position;
 
@@ -41,6 +41,7 @@ namespace SteamAge.Crafting
             {
                 for (int x = 0; x < 5; x++)
                 {
+                    RecipeSlots[x, y] = new ItemSlot(GameWorld);
                     Vector2 UpperLeftPos = Position + new Vector2(x * 32, y * 32);
                     RecipeSlots[x, y].Position = new Rectangle((int)UpperLeftPos.X, (int)UpperLeftPos.Y, 32, 32);
                 }

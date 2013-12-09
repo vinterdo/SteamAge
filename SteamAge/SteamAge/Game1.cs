@@ -55,12 +55,13 @@ namespace SteamAge
 
         private static void RegisterBlocksAndItems()
         {
-
             Block.RegisterBlock(new Blocks.BlockAir());
             Block.RegisterBlock(new Blocks.BlockDirt());
+
             Item.RegisterItem(new Items.CoalItem());
 
             Block.RegisterBlock(new TileEntities.TorchBlock());
+            Block.RegisterBlock(new TileEntities.CraftingTableBlock());
         }
 
         private void LoadSettings()

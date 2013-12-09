@@ -22,7 +22,7 @@ namespace SteamAge.TileEntities
             : base(GameWorld, "CraftingTable")
         {
             this.Entity = new CraftingTableEntity(GameWorld);
-            this.TileBlock = Block.GetBlock(5);
+            this.TileBlock = Block.GetBlock(1001);
             this.Name = "Textures/TileEntities/CraftingTable";
         }
 
@@ -82,7 +82,7 @@ namespace SteamAge.TileEntities
             : base(GameWorld)
         {
 
-            CraftingGrid = new CraftingGrid(new Vector2(100, 100));
+            CraftingGrid = new CraftingGrid(GameWorld, new Vector2(100, 100));
         }
     }
 }
