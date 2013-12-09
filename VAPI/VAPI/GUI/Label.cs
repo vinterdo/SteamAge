@@ -28,7 +28,7 @@ namespace VAPI
         {
         }
 
-        public override void Draw(SpriteBatch SpriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch SpriteBatch)
         {
             float ScaleX = 1f;
             float ScaleY = 1f;

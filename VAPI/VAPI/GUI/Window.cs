@@ -25,7 +25,7 @@ namespace VAPI
             this.BgColor = BgColor;
         }
 
-        public override void Draw(SpriteBatch SpriteBatch, GameTime GameTime)
+        public override void Draw(SpriteBatch SpriteBatch)
         {
             if (Visible)
             {
@@ -35,7 +35,7 @@ namespace VAPI
 
                 foreach (GUIComponent G in GUIComponents)
                 {
-                    G.Draw(SpriteBatch, GameTime);
+                    G.Draw(SpriteBatch);
                 }
             }
         }

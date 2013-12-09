@@ -47,11 +47,11 @@ namespace VAPI
             return Handled;
         }
 
-        public override void Draw(SpriteBatch SpriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch SpriteBatch)
         {
             foreach (CheckBox C in Boxes)
             {
-                C.Draw(SpriteBatch, gameTime);
+                C.Draw(SpriteBatch);
             }
         }
 

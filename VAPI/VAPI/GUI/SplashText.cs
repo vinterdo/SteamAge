@@ -46,7 +46,7 @@ namespace VAPI
 
         }
 
-        public override void Draw(SpriteBatch SpriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch SpriteBatch)
         {
             float Progress = CurrentLife/LifeTime;
             Font.DrawText(SpriteBatch, (int)Position.X, (int)Position.Y, Name);

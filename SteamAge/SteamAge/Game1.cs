@@ -48,6 +48,7 @@ namespace SteamAge
 
             Block.RegisterBlock(new Blocks.BlockAir());
             Block.RegisterBlock(new Blocks.BlockDirt());
+            Item.RegisterItem(new Items.CoalItem());
 
             LoadMods();
             GeneralManager.CurrentScreen = new ProfileSelectionScreen(this, GeneralManager.ScreenX, GeneralManager.ScreenY);
@@ -74,9 +75,6 @@ namespace SteamAge
             GeneralManager.LoadTex("Textures/Logo");
             GeneralManager.LoadTex("Textures/SkyGradient");
             GeneralManager.LoadTex("Textures/Sun");
-
-            //GeneralManager.LoadTex("Textures/Blocks/BlockAir");
-
 
 
             GeneralManager.LoadTex("Textures/GUI/Button1");
@@ -109,6 +107,7 @@ namespace SteamAge
             GeneralManager.LoadTex("Textures/Backgrounds/BackgroundDirt");
 
 
+            GeneralManager.LoadTex("Textures/Items/CoalItem");
 
             GeneralManager.LoadFont("Fonts/SteamWreck");
 

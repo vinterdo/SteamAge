@@ -23,7 +23,7 @@ namespace SteamAge
     {
         public int Id;
         public string Tex;
-        public static Dictionary<int, Item> ItemRegistry;
+        public static Dictionary<int, Item> ItemRegistry = new Dictionary<int,Item>();
 
 
         public static void RegisterItem(Item Item)

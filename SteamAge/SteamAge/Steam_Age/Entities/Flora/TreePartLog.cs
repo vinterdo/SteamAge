@@ -62,7 +62,7 @@ namespace SteamAge.Entities
 
         public void Draw(SpriteBatch SpriteBatch, Vector2 Camera)
         {
-            SpriteBatch.Draw(Tex, new Rectangle((int)(Fixture.Body.Position - Camera).X , (int)(Fixture.Body.Position - Camera).Y , 24, 24), null, Color.White, Fixture.Body.Rotation, Vector2.One * 24, SpriteEffects.None, 0.5f);
+            SpriteBatch.Draw(Tex, new Rectangle((int)(Fixture.Body.Position - Camera ).X , (int)(Fixture.Body.Position - Camera).Y , (int)Size.X, (int)Size.Y), null, Color.White, Fixture.Body.Rotation,  Size /2, SpriteEffects.None, 0.5f);
         }
     }
 }

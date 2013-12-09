@@ -43,18 +43,19 @@ namespace SteamAge.Entities
 
         public void Generate(int Size)
         {
-            GenerateTrunk(Size);
+            GenerateTrunk(Size, 64);
             GenerateBranches();
             CreateRoots();
+            //SetStatic();
         }
 
-        private void GenerateTrunk(int Size)
+        private void GenerateTrunk(int Size, int Width)
         {
             int CurrentHeight = 0;
 
             while (CurrentHeight <= Size)
             {
-                TreePartLog T = new TreePartLog(new Vector2(24, 24), World, GeneralManager.Textures["Textures/DynamicBodies/TreeLog"]);
+                TreePartLog T = new TreePartLog(new Vector2(Width, Width), World, GeneralManager.Textures["Textures/DynamicBodies/TreeLog"]);
                 T.Position = Position - new Vector2(0, CurrentHeight);
                 if (TreeLogs.Count >= 1)
                 {
@@ -62,7 +63,7 @@ namespace SteamAge.Entities
                 }
                 TreeLogs.Add(T);
                 
-                CurrentHeight += 24;
+                CurrentHeight += Width;
             }
         }
 
@@ -74,6 +75,22 @@ namespace SteamAge.Entities
 
         public void Destroy()
         {
+        }
+
+        public void SetStatic()
+        {
+            foreach (TreePartLog TL in TreeLogs)
+            {
+                TL.Fixture.Body.BodyType = BodyType.Static;
+            }
+        }
+
+        public void SetDynamic()
+        {
+            foreach (TreePartLog TL in TreeLogs)
+            {
+                TL.Fixture.Body.BodyType = BodyType.Dynamic;
+            }
         }
 
         public override void Draw(SpriteBatch SpriteBatch, Vector2 CameraPos)
@@ -95,6 +112,7 @@ namespace SteamAge.Entities
             RJ1.UpperLimit = MathHelper.TwoPi * 0.01f;
             RJ1.LimitEnabled = true;
             RJ1.CollideConnected = true;
+
             
             //WeldJoint WJ1 = JointFactory.CreateWeldJoint(TP1.Fixture.Body, TP2.Fixture.Body, Vector2.Zero);
             /*DistanceJoint DJ1 = JointFactory.CreateDistanceJoint(this.World.PhysicalWorld, TP1.Fixture.Body, TP2.Fixture.Body, new Vector2(-12, 8), new Vector2(-12, -8));
@@ -114,7 +132,7 @@ namespace SteamAge.Entities
                 for (int x = 0; x < ScanRange; x++)
                 {
                     BlocksNearby[x, y] = World.GetBlockFixture((int)Position.X / 32 + x, (int)Position.Y + y);
-                    JointFactory.CreateRevoluteJoint(
+                    //JointFactory.CreateRevoluteJoint(
                 }
             }
         }

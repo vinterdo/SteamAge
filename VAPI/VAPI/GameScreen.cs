@@ -102,7 +102,7 @@ namespace VAPI
 
             foreach (GUIComponent G in GUIComponents)
             {
-                GC[i].Draw(SpriteBatch,GameTime);
+                GC[i].Draw(SpriteBatch);
                 
                 i--;
             }

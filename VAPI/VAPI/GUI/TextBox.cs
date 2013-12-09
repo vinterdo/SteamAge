@@ -79,7 +79,7 @@ namespace VAPI
             return false;
         }
 
-        public override void Draw(SpriteBatch SpriteBatch, GameTime gameTime)
+        public override void Draw(SpriteBatch SpriteBatch)
         {
             if (Enabled)
             {

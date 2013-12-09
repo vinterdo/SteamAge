@@ -83,6 +83,9 @@
     <Compile Include="Steam_Age\Blocks\BlockAir.cs" />
     <Compile Include="Steam_Age\Blocks\BlockDirt.cs" />
     <Compile Include="Steam_Age\Blocks\IEntityBlock.cs" />
+    <Compile Include="Steam_Age\Crafting\CraftingGrid.cs" />
+    <Compile Include="Steam_Age\Crafting\CraftingRecipe.cs" />
+    <Compile Include="Steam_Age\Crafting\CraftingRecipePart.cs" />
     <Compile Include="Steam_Age\Entities\Character.cs" />
     <Compile Include="Steam_Age\Chunk.cs" />
     <Compile Include="Steam_Age\Blocks\DropDefinition.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Steam_Age\Generators\CaveGenerator.cs" />
     <Compile Include="Steam_Age\Generators\Generator.cs" />
     <Compile Include="Steam_Age\Generators\WorldGenerator.cs" />
+    <Compile Include="Steam_Age\Items\CoalItem.cs" />
     <Compile Include="Steam_Age\Items\Item.cs" />
     <Compile Include="Steam_Age\Items\ItemSlot.cs" />
     <Compile Include="Steam_Age\Items\ItemStack.cs" />
@@ -108,6 +112,9 @@
     <Compile Include="Steam_Age\Screens\SettingsScreen.cs" />
     <Compile Include="Steam_Age\Screens\WorldScreen.cs" />
     <Compile Include="Steam_Age\Settings.cs" />
+    <Compile Include="Steam_Age\TileEntities\CraftingTable.cs" />
+    <Compile Include="Steam_Age\TileEntities\IInventoryTE.cs" />
+    <Compile Include="Steam_Age\TileEntities\TileEntityGUI.cs" />
     <Compile Include="Steam_Age\TileEntities\TorchTE.cs" />
     <Compile Include="Steam_Age\World.cs" />
     <Compile Include="Steam_Age\TileEntities\TileEntity.cs" />

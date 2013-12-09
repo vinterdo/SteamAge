@@ -8,20 +8,13 @@ using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using VAPI;
 
-namespace VAPI
+namespace SteamAge.Crafting
 {
-    public abstract class GUIComponent
+    public class CraftingRecipe
     {
-
-        public bool IsActive = false;
-
-        public abstract bool HandleInput();
-
-        public abstract void Draw(SpriteBatch SpriteBatch);
-
-        public abstract void Update(GameTime gameTime);
-
-        public abstract bool CheckActive();
+        public CraftingRecipePart[,] RecipeParts = new CraftingRecipePart[5, 5];
+        public ItemSlot Output;
     }
 }
