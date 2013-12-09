@@ -61,8 +61,6 @@ namespace SteamAge
 
         public GameWorld(WorldScreen WorldScreen)
         {
-
-
             LightSystem = new KryptonEngine(GeneralManager.Game, "Effects/KryptonEffect");
             LightSystem.Initialize();
             SetLightColorPath();
@@ -85,7 +83,7 @@ namespace SteamAge
             InitLightSystem();
 
             TestPlayer = new Player(this, true);
-            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(4), 64));
+            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1000), 64));
 
             //Fluid = new FluidSimulation(PhysicalWorld);
 

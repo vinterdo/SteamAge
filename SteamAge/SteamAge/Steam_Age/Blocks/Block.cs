@@ -51,6 +51,7 @@ namespace SteamAge
             catch (KeyNotFoundException e)
             {
                 Logger.Write("Block key " + Key + " was not found in BlockRegistry, make sure you are using proper key/registered block before calling GetBlock");
+                Logger.Write(e.StackTrace.ToString());
                 return BlockRegist[0];
             }
         }
