@@ -18,7 +18,7 @@ namespace SteamAge.TileEntities
     {
         private List<ItemSlot> _ItemSlots;
         public TileEntityGUI(Rectangle Position)
-            : base(Position, new Color(0.5f, 0.5f, 0.5f, 0.5f))
+            : base(Position, new Color(0.0f, 0.0f, 0.0f, 0.5f))
         {
             _ItemSlots = new List<ItemSlot>();
         }
@@ -30,6 +30,7 @@ namespace SteamAge.TileEntities
                 this.Close();
                 return true;
             }
+            base.HandleInput();
             return false;
         }
 
@@ -64,6 +65,11 @@ namespace SteamAge.TileEntities
         public void DestroySlot(ItemSlot ItemSlot)
         {
             _ItemSlots.Remove(ItemSlot);
+        }
+
+        public override void Draw(SpriteBatch SpriteBatch)
+        {
+            base.Draw(SpriteBatch);
         }
     }
 }

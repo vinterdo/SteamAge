@@ -16,5 +16,17 @@ namespace SteamAge.Crafting
     {
         public CraftingRecipePart[,] RecipeParts = new CraftingRecipePart[5, 5];
         public ItemSlot Output;
+
+        private static List<CraftingRecipe> CraftingRegistry = new List<CraftingRecipe>();
+
+        public static void RegisterRecipe(CraftingRecipe Recipe)
+        {
+
+        }
+
+        public static void RemoveRecipe(CraftingRecipe Recipe)
+        {
+            CraftingRegistry.Remove(Recipe);
+        }
     }
 }

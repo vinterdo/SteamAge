@@ -17,6 +17,7 @@ namespace SteamAge.TileEntities
     public class CraftingTableTE : TileEntity, IInventoryTE
     {
         public TileEntityGUI Inventory;
+        public CraftingGrid CraftingGrid;
 
         public CraftingTableTE(Vector2 Position, GameWorld GameWorld)
             : base(GameWorld, "CraftingTable")
@@ -27,6 +28,8 @@ namespace SteamAge.TileEntities
 
             Inventory = new TileEntityGUI(new Rectangle(100, 100, 500, 500));
             GameWorld.ParentScreen.AddGUI(Inventory);
+            CraftingGrid = new CraftingGrid(GameWorld, new Vector2(100, 100));
+            CraftingGrid.AddToInventory(Inventory);
         }
 
         public void Close()
@@ -52,6 +55,9 @@ namespace SteamAge.TileEntities
         public override void Kill()
         {
             //CraftingGrid.Destroy(); // TODO: Add grid destroying
+            // REMOVING INVENTORY WINDOW!!!!!!!!!!!!
+            this = null;
+            // ======== up: reminder ==============
             base.Kill();
         }
     }
@@ -79,13 +85,11 @@ namespace SteamAge.TileEntities
 
     public class CraftingTableEntity : Entity
     {
-        public CraftingGrid CraftingGrid;
 
         public CraftingTableEntity(GameWorld GameWorld)
             : base(GameWorld)
         {
 
-            CraftingGrid = new CraftingGrid(GameWorld, new Vector2(100, 100));
         }
     }
 }

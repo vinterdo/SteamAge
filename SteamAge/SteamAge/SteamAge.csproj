@@ -102,6 +102,7 @@
     <Compile Include="Steam_Age\Items\Item.cs" />
     <Compile Include="Steam_Age\Items\ItemSlot.cs" />
     <Compile Include="Steam_Age\Items\ItemStack.cs" />
+    <Compile Include="Steam_Age\Items\PatternSlot.cs" />
     <Compile Include="Steam_Age\ParticleEmmiters\SteamEmmiter.cs" />
     <Compile Include="Steam_Age\Player.cs" />
     <Compile Include="Steam_Age\Profile.cs" />

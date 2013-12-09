@@ -42,6 +42,7 @@ namespace SteamAge.Crafting
                 for (int x = 0; x < 5; x++)
                 {
                     RecipeSlots[x, y] = new ItemSlot(GameWorld);
+                    RecipeSlots[x, y].Visible = true;
                     Vector2 UpperLeftPos = Position + new Vector2(x * 32, y * 32);
                     RecipeSlots[x, y].Position = new Rectangle((int)UpperLeftPos.X, (int)UpperLeftPos.Y, 32, 32);
                 }
@@ -51,6 +52,14 @@ namespace SteamAge.Crafting
         public void UpdateGrid()
         {
 
+        }
+
+        public void AddToInventory(TileEntities.TileEntityGUI TEGUI)
+        {
+            foreach (ItemSlot IS in this.RecipeSlots)
+            {
+                TEGUI.AddSlot(IS);
+            }
         }
 
         public void Draw(SpriteBatch SpriteBatch)
