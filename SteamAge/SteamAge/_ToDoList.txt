@@ -1,0 +1,5 @@
+﻿call UpdateGrid() method when ItemSlot is modified
+Show output slot
+check whats wrong with multiple crafting tables
+remove trees
+add IMultiBlockTE interface

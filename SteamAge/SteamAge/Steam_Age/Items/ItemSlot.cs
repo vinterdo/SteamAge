@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using VAPI;
 
+#warning Add slot lock state handling
 namespace SteamAge
 {
     public class ItemSlot : GUIComponent
@@ -18,6 +19,11 @@ namespace SteamAge
         public Rectangle Position; // can be null, beware!
         public bool Visible = false; // if (Visible) -> Positions is not null
         public GameWorld World;
+
+        public delegate void StackModified();
+        public StackModified OnStackModified = null;
+
+        public SlotState State = SlotState.Normal;
 
         public ItemSlot(GameWorld World):base()
         {
@@ -100,7 +106,10 @@ namespace SteamAge
                             }
                         }
                     }
-
+                    if (OnStackModified != null)
+                    {
+                        OnStackModified();
+                    }
                     return true;
                 }
 
@@ -124,6 +133,14 @@ namespace SteamAge
         public override void Update(GameTime gameTime)
         {
             
+        }
+
+        public enum SlotState
+        {
+            Normal,
+            InputLocked,
+            OutputLocked,
+            IOLocked
         }
     }
 }

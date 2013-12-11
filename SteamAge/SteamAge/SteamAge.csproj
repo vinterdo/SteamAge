@@ -125,6 +125,7 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="_ToDoList.txt" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\FarseerPhysics\FarseerPhysics.csproj">

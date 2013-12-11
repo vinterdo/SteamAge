@@ -75,6 +75,9 @@ namespace SteamAge
 
             ParentScreen = WorldScreen;
 
+
+            RegisterRecipes(this);
+
             PhysicalWorld = new World(new Vector2(0, 16 * 9.81f));
 
             //Generating Spawn Area
@@ -96,6 +99,23 @@ namespace SteamAge
 
             Debug.WriteLine("World Initialized");
 
+        }
+
+
+        private static void RegisterRecipes(GameWorld World)
+        {
+            Crafting.CraftingRecipe TestRecipe = new Crafting.CraftingRecipe(World);
+            TestRecipe.Output = new ItemStack(Block.GetBlock(1000), 1);
+
+            Crafting.CraftingRecipePart CRP1 = new Crafting.CraftingRecipePart();
+            CRP1.AddPart(new ItemStack(Block.GetBlock(1), 1));
+            TestRecipe.RecipeParts[0, 0] = CRP1;
+
+            Crafting.CraftingRecipePart CRP2 = new Crafting.CraftingRecipePart();
+            CRP2.AddPart(new ItemStack(Block.GetBlock(1), 1));
+            TestRecipe.RecipeParts[0, 1] = CRP2;
+
+            Crafting.CraftingRecipe.RegisterRecipe(TestRecipe);
         }
 
         private void SetLightColorPath()
@@ -371,8 +391,9 @@ namespace SteamAge
             }
         }
 
-        public Fixture GetBlockFixture(int x, int y)
+        public Fixture GetBlockFixture(int x, int y) 
         {
+#warning FIX needed
             Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
 
             if (this.Chunks.ContainsKey(ChunkV))
@@ -387,6 +408,8 @@ namespace SteamAge
 
         public TileEntity GetBlockTE(int x, int y)
         {
+
+#warning FIX needed
             Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
 
             if (this.Chunks.ContainsKey(ChunkV))
@@ -436,7 +459,6 @@ namespace SteamAge
         public void SetBlock(Vector2 Vect, Block B)
         {
             Vector2 ChunkV = new Vector2((int)Math.Floor((double)Vect.X / ChunkSize), (int)Math.Floor((double)Vect.Y / ChunkSize));
-
 
             if (this.Chunks.ContainsKey(ChunkV))
             {

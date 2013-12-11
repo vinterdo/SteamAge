@@ -49,15 +49,12 @@ namespace SteamAge.TileEntities
 
         public void DestroyGUI()
         {
-            throw new NotImplementedException();
+            World.ParentScreen.RemoveGUI(Inventory);
         }
 
         public override void Kill()
         {
-            //CraftingGrid.Destroy(); // TODO: Add grid destroying
-            // REMOVING INVENTORY WINDOW!!!!!!!!!!!!
-            this = null;
-            // ======== up: reminder ==============
+            DestroyGUI();
             base.Kill();
         }
     }

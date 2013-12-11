@@ -46,8 +46,8 @@ namespace SteamAge
 
             LoadTextures();
             RegisterBlocksAndItems();
-
             LoadMods();
+
             GeneralManager.CurrentScreen = new ProfileSelectionScreen(this, GeneralManager.ScreenX, GeneralManager.ScreenY);
             
             base.Initialize();
@@ -63,6 +63,7 @@ namespace SteamAge
             Block.RegisterBlock(new TileEntities.TorchBlock());
             Block.RegisterBlock(new TileEntities.CraftingTableBlock());
         }
+
 
         private void LoadSettings()
         {

@@ -25,13 +25,15 @@ namespace SteamAge.Crafting
             }
         }
 
-        public ItemSlot Output
+        public ItemStack Output
         {
             get
             {
                 return _MatchingRecipe.Output;
             }
         }
+
+        public ItemSlot OutputSlot;
 
         public CraftingGrid(GameWorld GameWorld, Vector2 Position)
         {
@@ -45,13 +47,36 @@ namespace SteamAge.Crafting
                     RecipeSlots[x, y].Visible = true;
                     Vector2 UpperLeftPos = Position + new Vector2(x * 32, y * 32);
                     RecipeSlots[x, y].Position = new Rectangle((int)UpperLeftPos.X, (int)UpperLeftPos.Y, 32, 32);
+                    RecipeSlots[x, y].OnStackModified += UpdateGrid;
                 }
             }
+
+            OutputSlot = new ItemSlot(GameWorld);
+            OutputSlot.Visible = true;
+            OutputSlot.State = ItemSlot.SlotState.InputLocked;
+            OutputSlot.Position = new Rectangle((int)Position.X + 5 * 32 + 10, (int)Position.Y + 2 * 32, 32, 32);
         }
+
 
         public void UpdateGrid()
         {
+            bool Found = false;
+            foreach (CraftingRecipe CR in CraftingRecipe.Recipes)
+            {
+                if (CraftingRecipe.RecipesMatch(this, CR))
+                {
+                    _MatchingRecipe = CR;
+                    Found = true;
+                    OutputSlot.ItemStack = MatchingRecipe.Output;
+                }
+                
+            }
 
+            if (!Found)
+            {
+                _MatchingRecipe = null;
+                OutputSlot.ItemStack = null;
+            }
         }
 
         public void AddToInventory(TileEntities.TileEntityGUI TEGUI)
@@ -60,6 +85,8 @@ namespace SteamAge.Crafting
             {
                 TEGUI.AddSlot(IS);
             }
+
+            TEGUI.AddSlot(OutputSlot);
         }
 
         public void Draw(SpriteBatch SpriteBatch)
@@ -71,6 +98,11 @@ namespace SteamAge.Crafting
                     RecipeSlots[x, y].Draw(SpriteBatch);
                 }
             }
+        }
+
+        public ItemStack GetStack(int x, int y)
+        {
+            return RecipeSlots[x, y].ItemStack;
         }
     }
 }

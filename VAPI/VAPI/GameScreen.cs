@@ -21,11 +21,13 @@ namespace VAPI
 
         protected float GoingOut = 0;
         protected float GoingIn = 5;
-        
+
+        public LinkedList<GUIComponent> GUIComponents;
+        public List<ParticleWorld2D> ParticleWorlds;
 
         public GameScreen(Game Game, int SizeX, int SizeY)
         {
-            GUIComponents = new Stack<GUIComponent>();
+            GUIComponents = new LinkedList<GUIComponent>();
             ParticleWorlds = new List<ParticleWorld2D>();
             this.Parent = Game;
             RenderTarget = new RenderTarget2D(Parent.GraphicsDevice, SizeX, SizeY );//new RenderTarget2D(Parent.GraphicsDevice, SizeX, SizeY, 1, SurfaceFormat.Color);
@@ -33,15 +35,13 @@ namespace VAPI
 
         public GameScreen(Game Game, int SizeX, int SizeY, Effect Effect)
         {
-            GUIComponents = new Stack<GUIComponent>();
+            GUIComponents = new LinkedList<GUIComponent>();
             ParticleWorlds = new List<ParticleWorld2D>();
             this.Parent = Game;
             RenderTarget = new RenderTarget2D(Parent.GraphicsDevice, SizeX, SizeY);//, 1, SurfaceFormat.Color);
             this.Effect = Effect;
         }
 
-        public Stack<GUIComponent> GUIComponents;
-        public List<ParticleWorld2D> ParticleWorlds;
 
         public virtual bool HandleInput()
         {
@@ -111,15 +111,17 @@ namespace VAPI
             {
                 PW.Draw(SpriteBatch, GameTime);
             }
-
-
-            
             
         }
 
         public void AddGUI(GUIComponent GUI)
         {
-            this.GUIComponents.Push(GUI);
+            this.GUIComponents.AddFirst(GUI);
+        }
+
+        public void RemoveGUI(GUIComponent GUI)
+        {
+            GUIComponents.Remove(GUI);
         }
 
         public void BeginDraw(SpriteBatch SpriteBatch, GameTime GameTime)
