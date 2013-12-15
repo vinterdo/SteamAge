@@ -66,68 +66,97 @@ namespace SteamAge
             {
                 if (CheckActive() && GeneralManager.IsLMBClickedEdge())
                 {
-                    ItemStack HoldingStack = World.GetCurrentPlayer().HoldingStack;
-                    if (ItemStack == null)
-                    {
-                        if (HoldingStack != null)
-                        {
-                            ItemStack = World.GetCurrentPlayer().HoldingStack;
-                            World.GetCurrentPlayer().HoldingStack = null;
-                        }
-                        // else {if both null do nothing}
-                    }
-                    else // if there is something in slot
-                    {
-                        if (HoldingStack == null)
-                        {
-                            World.GetCurrentPlayer().HoldingStack = this.ItemStack;
-                            this.ItemStack = null;
-                        }
-                        else
-                        {
-                            if (HoldingStack.Item == ItemStack.Item) 
-                            {
-                                if (HoldingStack.Count + ItemStack.Count <= ItemStack.MAX_STACK)
-                                {
-                                    ItemStack.Count = HoldingStack.Count + ItemStack.Count;
-                                    World.GetCurrentPlayer().HoldingStack = null;
-                                }
-                                else
-                                {
-                                    World.GetCurrentPlayer().HoldingStack.Count = HoldingStack.Count + ItemStack.Count - ItemStack.MAX_STACK;
-                                    ItemStack.Count = ItemStack.MAX_STACK;
-                                }
-                            }
-                            else // Switch
-                            {
-                                ItemStack TmpStack = HoldingStack;
-                                World.GetCurrentPlayer().HoldingStack = ItemStack;
-                                ItemStack = TmpStack;
-                            }
-                        }
-                    }
-                    if (OnStackModified != null)
-                    {
-                        OnStackModified();
-                    }
-                    return true;
-                }
-
-                if ( this.IsActive) // dzicz totalna
-                {
-                    if (World.GetCurrentPlayer().HoldingStack != null)
-                    {
-                        if (ItemStack == null)
-                        {
-                            ItemStack = new ItemStack(World.GetCurrentPlayer().HoldingStack.Item, (int)Math.Ceiling(World.GetCurrentPlayer().HoldingStack.Count / 2f));
-                            World.GetCurrentPlayer().HoldingStack.Count = (int)Math.Floor(ItemStack.Count / 2f);
-                            //ItemStack.Count = (int)Math.Ceiling(ItemStack.Count / 2f);
-                        }
-                    }
-                    return true;
+                    return HandleLMBClick();
                 }
             }
             return false;
+        }
+
+        private bool HandleLMBClick()
+        {
+            ItemStack HoldingStack = World.GetCurrentPlayer().HoldingStack;
+            if (ItemStack == null && State == SlotState.Normal || State == SlotState.OutputLocked)
+            {
+                InsetHoldingToSlot(HoldingStack);
+            }
+            else if (ItemStack != null)// if there is something in slot
+            {
+                if (HoldingStack == null)
+                {
+                    World.GetCurrentPlayer().HoldingStack = this.ItemStack;
+                    this.ItemStack = null;
+                }
+                else
+                {
+                    if (HoldingStack.Item == ItemStack.Item)
+                    {
+                        MergeStacks(HoldingStack);
+                    }
+                    else // Switch
+                    {
+                        SwitchStacks(HoldingStack);
+                    }
+                }
+            }
+            
+            //Call OnStackModified delegate
+
+            if (OnStackModified != null)
+            {
+                OnStackModified();
+            }
+            return true;
+        }
+
+        private void InsetHoldingToSlot(ItemStack HoldingStack)
+        {
+            if (HoldingStack != null)
+            {
+                ItemStack = World.GetCurrentPlayer().HoldingStack;
+                World.GetCurrentPlayer().HoldingStack = null;
+            }
+        }
+
+        private void MergeStacks(ItemStack HoldingStack)
+        {
+            switch(State)
+            {
+                case SlotState.Normal:
+                case SlotState.OutputLocked:
+                    if (HoldingStack.Count + ItemStack.Count <= ItemStack.MAX_STACK)
+                    {
+                        ItemStack.Count = HoldingStack.Count + ItemStack.Count;
+                        World.GetCurrentPlayer().HoldingStack = null;
+                    }
+                    else
+                    {
+                        World.GetCurrentPlayer().HoldingStack.Count = HoldingStack.Count + ItemStack.Count - ItemStack.MAX_STACK;
+                        ItemStack.Count = ItemStack.MAX_STACK;
+                    }
+                    break;
+                case SlotState.InputLocked:
+                    if (HoldingStack.Count + ItemStack.Count <= ItemStack.MAX_STACK)
+                    {
+                        World.GetCurrentPlayer().HoldingStack.Count = HoldingStack.Count + ItemStack.Count;
+                        ItemStack = null;
+                    }
+                    else
+                    {
+                        ItemStack.Count = HoldingStack.Count + ItemStack.Count - ItemStack.MAX_STACK;
+                        World.GetCurrentPlayer().HoldingStack.Count = ItemStack.MAX_STACK;
+                    }
+                    break;
+                case SlotState.IOLocked:
+                    //nothing
+                    break;
+            }
+        }
+
+        private void SwitchStacks(ItemStack HoldingStack)
+        {
+            ItemStack TmpStack = HoldingStack;
+            World.GetCurrentPlayer().HoldingStack = ItemStack;
+            ItemStack = TmpStack;
         }
 
         public override void Update(GameTime gameTime)

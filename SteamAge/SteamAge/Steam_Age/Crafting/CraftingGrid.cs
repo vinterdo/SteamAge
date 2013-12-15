@@ -16,6 +16,7 @@ namespace SteamAge.Crafting
     {
         private ItemSlot[,] RecipeSlots = new ItemSlot[5, 5];
         private CraftingRecipe _MatchingRecipe;
+        private int[,] RecipePartIdMatching;
         public Vector2 Position;
         public CraftingRecipe MatchingRecipe
         {
@@ -38,6 +39,7 @@ namespace SteamAge.Crafting
         public CraftingGrid(GameWorld GameWorld, Vector2 Position)
         {
             this.Position = Position;
+            RecipePartIdMatching = new int[5, 5];
 
             for (int y = 0; y < 5; y++)
             {
@@ -48,6 +50,7 @@ namespace SteamAge.Crafting
                     Vector2 UpperLeftPos = Position + new Vector2(x * 32, y * 32);
                     RecipeSlots[x, y].Position = new Rectangle((int)UpperLeftPos.X, (int)UpperLeftPos.Y, 32, 32);
                     RecipeSlots[x, y].OnStackModified += UpdateGrid;
+                    RecipePartIdMatching[x, y] = -1;
                 }
             }
 
@@ -55,8 +58,34 @@ namespace SteamAge.Crafting
             OutputSlot.Visible = true;
             OutputSlot.State = ItemSlot.SlotState.InputLocked;
             OutputSlot.Position = new Rectangle((int)Position.X + 5 * 32 + 10, (int)Position.Y + 2 * 32, 32, 32);
+
+            OutputSlot.OnStackModified += ItemCrafted;
         }
 
+        public void ItemCrafted()
+        {
+            if (_MatchingRecipe != null)
+            {
+                for (int y = 0; y < 5; y++)
+                {
+                    for (int x = 0; x < 5; x++)
+                    {
+#warning FIX!
+                        if (MatchingRecipe.RecipeParts[x, y] != null && !MatchingRecipe.RecipeParts[x, y].IsEmpty())
+                        {
+                            RecipeSlots[x, y].ItemStack.Count -= 1;
+
+                            if (RecipeSlots[x, y].ItemStack.Count == 0)
+                            {
+                                RecipeSlots[x, y].ItemStack = null;
+                            }
+                        }
+                    }
+                }
+
+                UpdateGrid();
+            }
+        }
 
         public void UpdateGrid()
         {
@@ -67,7 +96,8 @@ namespace SteamAge.Crafting
                 {
                     _MatchingRecipe = CR;
                     Found = true;
-                    OutputSlot.ItemStack = MatchingRecipe.Output;
+                    OutputSlot.ItemStack = new ItemStack(CR.Output.Item, CR.Output.Count);
+                    
                 }
                 
             }

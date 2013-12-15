@@ -48,5 +48,10 @@ namespace SteamAge.Crafting
                 Parts.Add(IS);
             }
         }
+
+        public bool IsEmpty()
+        {
+            return this.Parts.Count == 0;
+        }
     }
 }
