@@ -140,9 +140,9 @@ namespace SteamAge
                     PlaceBlock();
                     Value = true;
                 }
-                else if(World.GetBlockTE((GeneralManager.MousePos + Camera) / 32) != null)
+                else if (World.GetBlockTE(WorldHelper.GetBlockPos(GeneralManager.MousePos + Camera)) != null)
                 {
-                    UseBlock((GeneralManager.MousePos + Camera) / 32);
+                    UseBlock(WorldHelper.GetBlockPos(GeneralManager.MousePos + Camera));
                     Value = true;
                 }
                 else
@@ -200,7 +200,7 @@ namespace SteamAge
 
         private void UseBlock(Vector2 BlockPos)
         {
-            TileEntity TE = World.GetBlockTE((int)BlockPos.X, (int)BlockPos.Y);
+            TileEntity TE = World.GetBlockTE(BlockPos);
             if (TE is TileEntities.IInventoryTE)
             {
                 (TE as TileEntities.IInventoryTE).OpenGUI();

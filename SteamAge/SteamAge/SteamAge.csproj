@@ -119,6 +119,7 @@
     <Compile Include="Steam_Age\TileEntities\TreeTE.cs" />
     <Compile Include="Steam_Age\World.cs" />
     <Compile Include="Steam_Age\TileEntities\TileEntity.cs" />
+    <Compile Include="Steam_Age\WorldHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />

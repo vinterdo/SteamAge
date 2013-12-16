@@ -36,7 +36,13 @@ namespace SteamAge.TileEntities
             this.Position = Position;
 
             MultiBlockDef = new MultiBlockDef(new Vector2(3, 10), Position);
-
+            for (int y = 0; y < 10; y++)
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    MultiBlockDef.SetBlock(x, y, this.TileBlock);
+                }
+            }
         }
 
         public Vector2 GetCenterCoord()

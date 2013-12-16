@@ -16,6 +16,5 @@ namespace SteamAge
     public interface IEntityBlock // Every block related to Tile Entuty have to implements this inteface
     {
         TileEntity GetNewTE(GameWorld World, Vector2 Position); // return new TileEntity related to block
-        
     }
 }

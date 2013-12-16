@@ -375,12 +375,12 @@ namespace SteamAge
 
         public Block GetBlock(int x, int y)
         {
-            Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
-
+            Vector2 ChunkV = WorldHelper.GetChunkPos(new Vector2(x, y));
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
-                return Chunks[ChunkV].Blocks[x - (int)ChunkV.X * ChunkSize, y - (int)ChunkV.Y * ChunkSize];
+                Vector2 PosInChunk = WorldHelper.GetBlockInChunkPos(new Vector2(x, y));
+                return Chunks[ChunkV].Blocks[(int)PosInChunk.X, (int)PosInChunk.Y];
             }
             else
             {
@@ -388,30 +388,16 @@ namespace SteamAge
             }
         }
 
-        public Fixture GetBlockFixture(int x, int y) 
-        {
-#warning FIX needed
-            Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
-
-            if (this.Chunks.ContainsKey(ChunkV))
-            {
-                return Chunks[ChunkV].BlockFixtures[x - (int)ChunkV.X * ChunkSize, y - (int)ChunkV.Y * ChunkSize];
-            }
-            else
-            {
-                return null;
-            }
-        }
 
         public TileEntity GetBlockTE(int x, int y)
         {
 
-#warning FIX needed
-            Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
+            Vector2 ChunkV = WorldHelper.GetChunkPos(new Vector2(x, y));
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
-                return Chunks[ChunkV].TileEntities[x - (int)ChunkV.X * ChunkSize, y - (int)ChunkV.Y * ChunkSize];
+                Vector2 PosInChunk = WorldHelper.GetBlockInChunkPos(new Vector2(x, y));
+                return Chunks[ChunkV].TileEntities[(int)PosInChunk.X, (int)PosInChunk.Y];
             }
             else
             {
@@ -426,10 +412,7 @@ namespace SteamAge
 
         public Block GetBackgroundBlock(int x, int y)
         {
-
-
-            Vector2 ChunkV = new Vector2((int)Math.Floor((double)x / ChunkSize), (int)Math.Floor((double)y / ChunkSize));
-
+            Vector2 ChunkV = WorldHelper.GetChunkPos(new Vector2(x, y));
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
@@ -448,14 +431,12 @@ namespace SteamAge
 
         public bool CheckTileCollision(Vector2 Vect)
         {
-
-            
             return GetBlock((Vect)/ new Vector2(TileWidth, TileHeight)).IsSolid;
         }
 
         public void SetBlock(Vector2 Vect, Block B)
         {
-            Vector2 ChunkV = new Vector2((int)Math.Floor((double)Vect.X / ChunkSize), (int)Math.Floor((double)Vect.Y / ChunkSize));
+            Vector2 ChunkV = WorldHelper.GetChunkPos(Vect);
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
@@ -485,8 +466,6 @@ namespace SteamAge
                 UpdateBlock((int)Math.Floor(Vect.X), (int)Math.Floor(Vect.Y) + 1);
 
                 Chunks[ChunkV].CalcLights();
-                
-                //Chunks[ChunkV].Update(null);
             }
             else
             {
@@ -496,26 +475,22 @@ namespace SteamAge
 
         public void SetBlock(Vector2 Vect, TileEntity TE)
         {
-            TE.Position = Vect;
-            SetBlock(Vect, TE.TileBlock);
 
-            Vector2 ChunkV = new Vector2((int)Math.Floor((double)Vect.X / ChunkSize), (int)Math.Floor((double)Vect.Y / ChunkSize));
+            Vector2 ChunkV = WorldHelper.GetChunkPos(Vect);
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
-                int PosX = (int)Math.Floor(Vect.X) - (int)ChunkV.X * ChunkSize;
-                int PosY = (int)Math.Floor(Vect.Y) - (int)ChunkV.Y * ChunkSize;
-                if (PosX < 0) PosX = 15 - PosX;
-                if (PosY < 0) PosY = 15 - PosY;
+                TE.Position = Vect;
+                SetBlock(Vect, TE.TileBlock);
+                Vector2 PosInChunk = WorldHelper.GetBlockInChunkPos(Vect);
 
-                Chunks[ChunkV].TileEntities[PosX, PosY] = TE;
+                Chunks[ChunkV].TileEntities[(int)PosInChunk.X, (int)PosInChunk.Y] = TE;
             }
         }
 
         public void SetBackgroundBlock(Vector2 Vect, Block B)
         {
             Vector2 ChunkV = new Vector2((int)Math.Floor((double)Vect.X / ChunkSize), (int)Math.Floor((double)Vect.Y / ChunkSize));
-
 
             if (this.Chunks.ContainsKey(ChunkV))
             {
@@ -531,8 +506,6 @@ namespace SteamAge
                 UpdateBackgroundBlock((int)Math.Floor(Vect.X) + 1, (int)Math.Floor(Vect.Y));
                 UpdateBackgroundBlock((int)Math.Floor(Vect.X), (int)Math.Floor(Vect.Y) - 1);
                 UpdateBackgroundBlock((int)Math.Floor(Vect.X), (int)Math.Floor(Vect.Y) + 1);
-
-                //Chunks[ChunkV].Update(null);
             }
             else
             {
@@ -546,15 +519,10 @@ namespace SteamAge
             Vec.X = (int)Vec.X;
             Vec.Y = (int)Vec.Y;
 
-
             if (Vec.X < 0) Vec.X -= 32;
             if (Vec.Y < 0) Vec.Y -= 32;
 
-
             Vector2 tilePosition = new Vector2((int)(Vec.X / TileWidth), (int)(Vec.Y / TileHeight));
-
-            //if (tilePosition.X < 0 || tilePosition.Y < 0 || tilePosition.X > Width - 1 || tilePosition.Y > Height - 1)
-            //    return null;
 
             Block collisionTile = GetBlock((int)tilePosition.X, (int)tilePosition.Y);
 
@@ -600,25 +568,6 @@ namespace SteamAge
 
         public bool RaycastAny(Vector2 Point1, Vector2 Point2)
         {
-            /*bool hitAny = false;
-            PhysicalWorld.RayCast((f, p, n, fr) =>
-            {
-                Body body = f.Body;
-                if (body.UserData != null)
-                {
-                    int index = (int)body.UserData;
-                    if (index == 0)
-                    {
-                        // filter
-                        return -1.0f;
-                    }
-                }
-
-                hitAny = true;
-                return 0;
-            }, Point1, Point2);
-
-            return hitAny;*/
             return false;
         }
 

@@ -140,7 +140,6 @@ namespace SteamAge
         public void Update(GameTime GameTime)
         {
             //Edges
-
             for (int y = 0; y < GameWorld.ChunkSize; y++)
             {
                 for (int x = 0; x < GameWorld.ChunkSize; x++)

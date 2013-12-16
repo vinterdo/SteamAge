@@ -36,5 +36,17 @@ namespace SteamAge
 
             BlockTable = new Block[(int)Size.X, (int)Size.Y];
         }
+
+        public void SetBlock(int x, int y, Block B)
+        {
+            try
+            {
+                BlockTable[x, y] = B;
+            }
+            catch
+            {
+                Logger.Write("Invalid usage of SetBlock function in MultiBLockDefinition");
+            }
+        }
     }
 }
