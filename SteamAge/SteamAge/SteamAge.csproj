@@ -91,9 +91,6 @@
     <Compile Include="Steam_Age\Blocks\DropDefinition.cs" />
     <Compile Include="Steam_Age\Entities\DynamicBody.cs" />
     <Compile Include="Steam_Age\Entities\Entity.cs" />
-    <Compile Include="Steam_Age\Entities\Flora\Tree.cs" />
-    <Compile Include="Steam_Age\Entities\Flora\TreeBranch.cs" />
-    <Compile Include="Steam_Age\Entities\Flora\TreePartLog.cs" />
     <Compile Include="Steam_Age\Generators\BasicTerrainGenerator.cs" />
     <Compile Include="Steam_Age\Generators\CaveGenerator.cs" />
     <Compile Include="Steam_Age\Generators\Generator.cs" />
@@ -103,6 +100,7 @@
     <Compile Include="Steam_Age\Items\ItemSlot.cs" />
     <Compile Include="Steam_Age\Items\ItemStack.cs" />
     <Compile Include="Steam_Age\Items\PatternSlot.cs" />
+    <Compile Include="Steam_Age\MultiBlockDef.cs" />
     <Compile Include="Steam_Age\ParticleEmmiters\SteamEmmiter.cs" />
     <Compile Include="Steam_Age\Player.cs" />
     <Compile Include="Steam_Age\Profile.cs" />
@@ -115,8 +113,10 @@
     <Compile Include="Steam_Age\Settings.cs" />
     <Compile Include="Steam_Age\TileEntities\CraftingTable.cs" />
     <Compile Include="Steam_Age\TileEntities\IInventoryTE.cs" />
+    <Compile Include="Steam_Age\TileEntities\IMultiBlockTE.cs" />
     <Compile Include="Steam_Age\TileEntities\TileEntityGUI.cs" />
     <Compile Include="Steam_Age\TileEntities\TorchTE.cs" />
+    <Compile Include="Steam_Age\TileEntities\TreeTE.cs" />
     <Compile Include="Steam_Age\World.cs" />
     <Compile Include="Steam_Age\TileEntities\TileEntity.cs" />
   </ItemGroup>
@@ -125,6 +125,7 @@
     <Content Include="GameThumbnail.png">
       <XnaPlatformSpecific>true</XnaPlatformSpecific>
     </Content>
+    <Content Include="Steam_Age\TileEntities\_CreatingTileEntity.txt" />
     <Content Include="_ToDoList.txt" />
   </ItemGroup>
   <ItemGroup>

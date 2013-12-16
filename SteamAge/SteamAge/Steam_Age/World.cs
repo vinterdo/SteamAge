@@ -21,7 +21,6 @@ using VAPI.FluidSim;
 using Krypton;
 using Krypton.Lights;
 using SteamAge.Generators;
-using SteamAge.Entities;
 
 namespace SteamAge
 {
@@ -92,10 +91,8 @@ namespace SteamAge
             //Fluid = new FluidSimulation(PhysicalWorld);
 
             SetBlock(new Vector2(4, 4), new TileEntities.TorchTE(this, new Vector2(128, 128)));
+            SetBlock(new Vector2(4, 3), new TileEntities.TreeTE(this, new Vector2(128, 96)));
             Entities.Add(new DynamicBody(this, new CircleShape(10.5f, 0.5f), new Vector2(95, 100), "Textures/DynamicBodies/Barrel1"));
-            Tree TreeEnt = new Tree(this, new Vector2(500, -500));
-            TreeEnt.Generate(300);
-            Entities.Add(TreeEnt);
 
             Debug.WriteLine("World Initialized");
 

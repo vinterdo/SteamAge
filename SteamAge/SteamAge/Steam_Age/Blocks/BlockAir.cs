@@ -25,9 +25,9 @@ namespace SteamAge.Blocks
             
         }
 
-        public override void Draw(SpriteBatch SpriteBatch, Vector2 Position)
+        public override void Draw(SpriteBatch SpriteBatch, Vector2 Position, Color Color, int State)
         {
-            base.Draw(SpriteBatch, Position);
+            base.Draw(SpriteBatch, Position, Color, 0);
         }
 
         

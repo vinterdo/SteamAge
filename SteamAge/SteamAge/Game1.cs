@@ -62,6 +62,7 @@ namespace SteamAge
 
             Block.RegisterBlock(new TileEntities.TorchBlock());
             Block.RegisterBlock(new TileEntities.CraftingTableBlock());
+            Block.RegisterBlock(new TileEntities.TreeBlock());
         }
 
 

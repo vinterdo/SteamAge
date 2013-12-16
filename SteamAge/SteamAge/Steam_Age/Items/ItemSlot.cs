@@ -10,7 +10,6 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using VAPI;
 
-#warning Add slot lock state handling
 namespace SteamAge
 {
     public class ItemSlot : GUIComponent

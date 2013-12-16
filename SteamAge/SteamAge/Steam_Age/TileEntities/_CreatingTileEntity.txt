@@ -1,0 +1,39 @@
+﻿1. Create 3 classes:
+	public class TreeTE : TileEntity
+	public class TreeBlock : Block, IEntityBlock
+	public class TreeEntity : Entity
+2. Add contructor to TreeTE
+public TreeTE(GameWorld GameWorld) : base(GameWorld, "Name")
+3. Add setting Entity and Block into constructor:
+	this.Entity = new TreeeEntity(GameWorld);
+    this.TileBlock = Block.GetBlock(1001); // must be id of TreeBlock
+    this.Name = "Textures/TileEntities/Tree";
+4. Add Kill() Method
+ it should remove all connected invenoties/multiblocks/lights etc, also remove Entity
+5. Add Constructor to block:
+
+public TreeBlock()
+            : base()
+        {
+            IsSolid = false;
+            Family = "Tree";
+            Tex = "Textures/TileEntities/Tree";
+            Id = 1000;
+            Textures[0] = new KeyValuePair<Block.BlockState, string>((Block.BlockState)0, "Textures/TileEntities/Tree");
+
+            Drop.AddDrop(1, 0, this);
+        }
+
+6. And add GetNewTeImplementation:
+
+        public TileEntity GetNewTE(GameWorld World, Vector2 Position)
+        {
+            return new TreeTE(World);
+        }
+7. Add Entity Constructor:
+
+public TreeEntity(GameWorld GameWorld)
+            : base(GameWorld)
+        {
+			// it can be empty and Entity can be just not used if you dont need it, but cant be null
+        }

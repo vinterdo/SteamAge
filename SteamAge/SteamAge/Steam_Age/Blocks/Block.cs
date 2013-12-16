@@ -106,10 +106,10 @@ namespace SteamAge
             SpriteBatch.Draw(GeneralManager.Textures[this.Tex], new Rectangle(Position.X + 6, Position.Y + 6, Position.Width - 12, Position.Height - 12), Color.White);
         }
 
-        public virtual void Draw(SpriteBatch SpriteBatch, Vector2 Position)
+        public virtual void Draw(SpriteBatch SpriteBatch, Vector2 Position, Color Color, int BlockState)
         {
             
-            SpriteBatch.Draw(GeneralManager.Textures[this.Textures[(int)State].Value], Position, Color.White);
+            SpriteBatch.Draw(GeneralManager.Textures[this.Textures[BlockState].Value], Position, Color);
         }
 
         public void CreateShape()

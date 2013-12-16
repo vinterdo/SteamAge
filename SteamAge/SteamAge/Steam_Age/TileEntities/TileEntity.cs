@@ -80,17 +80,6 @@ namespace SteamAge
             }
         }
 
-        public virtual void Draw(SpriteBatch SpriteBatch, Vector2 Position)
-        {
-
-            TileBlock.Draw(SpriteBatch, Position);
-        }
-
-        public virtual void DrawIcon(SpriteBatch SpriteBatch, Rectangle Position)
-        {
-
-            TileBlock.DrawIcon(SpriteBatch, Position);
-        }
 
         public void RegisterEntity()
         {

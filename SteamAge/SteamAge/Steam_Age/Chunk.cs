@@ -67,7 +67,8 @@ namespace SteamAge
             {
                 for (int x = 0; x < GameWorld.ChunkSize; x++)
                 {
-                    SpriteBatch.Draw(GeneralManager.Textures[Blocks[x, y].Textures[BlockState[x, y]].Value], new Rectangle((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y, GameWorld.TileWidth, GameWorld.TileHeight)/*Position + new Vector2(GameWorld.TileWidth * x, GameWorld.TileHeight * y)*/, new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]));
+                    Blocks[x, y].Draw(SpriteBatch, new Vector2((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y), new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]), BlockState[x, y]);
+                    //SpriteBatch.Draw(GeneralManager.Textures[Blocks[x, y].Textures[BlockState[x, y]].Value], new Rectangle((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y, GameWorld.TileWidth, GameWorld.TileHeight)/*Position + new Vector2(GameWorld.TileWidth * x, GameWorld.TileHeight * y)*/, new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]));
                 }
             }
         }
