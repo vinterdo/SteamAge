@@ -25,13 +25,20 @@ namespace SteamAge
 {
     public class MultiBlockDef
     {
-        Vector2 Size;
+        Vector2 _Size;
         Vector2 Center;
         public Block[,] BlockTable;
+        public Vector2 Size
+        {
+            get
+            {
+                return _Size;
+            }
+        }
 
         public MultiBlockDef(Vector2 Size, Vector2 Center)
         {
-            this.Size = Size;
+            this._Size = Size;
             this.Center = Center;
 
             BlockTable = new Block[(int)Size.X, (int)Size.Y];

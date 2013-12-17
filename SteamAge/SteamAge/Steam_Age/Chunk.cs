@@ -67,8 +67,18 @@ namespace SteamAge
             {
                 for (int x = 0; x < GameWorld.ChunkSize; x++)
                 {
-                    Blocks[x, y].Draw(SpriteBatch, new Vector2((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y), new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]), BlockState[x, y]);
-                    //SpriteBatch.Draw(GeneralManager.Textures[Blocks[x, y].Textures[BlockState[x, y]].Value], new Rectangle((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y, GameWorld.TileWidth, GameWorld.TileHeight)/*Position + new Vector2(GameWorld.TileWidth * x, GameWorld.TileHeight * y)*/, new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]));
+                    if (TileEntities[x, y] != null && TileEntities[x, y] is TileEntities.IMultiBlockTE)
+                    {
+                        if((TileEntities[x, y] as TileEntities.IMultiBlockTE).GetCenterCoord() == new Vector2(x, y))
+                        {
+                            Blocks[x, y].Draw(SpriteBatch, new Vector2((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y), new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]), BlockState[x, y]);
+                        }
+                    }
+                    else
+                    {
+                        Blocks[x, y].Draw(SpriteBatch, new Vector2((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y), new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]), BlockState[x, y]);
+                        //SpriteBatch.Draw(GeneralManager.Textures[Blocks[x, y].Textures[BlockState[x, y]].Value], new Rectangle((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y, GameWorld.TileWidth, GameWorld.TileHeight)/*Position + new Vector2(GameWorld.TileWidth * x, GameWorld.TileHeight * y)*/, new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]));
+                    }
                 }
             }
         }

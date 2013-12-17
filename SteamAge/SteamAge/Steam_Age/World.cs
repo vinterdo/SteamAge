@@ -17,10 +17,10 @@ using FarseerPhysics.Controllers;
 using FarseerPhysics.Dynamics;
 using FarseerPhysics.Factories;
 using System.Diagnostics;
-using VAPI.FluidSim;
 using Krypton;
 using Krypton.Lights;
 using SteamAge.Generators;
+using SteamAge.TileEntities;
 
 namespace SteamAge
 {
@@ -73,7 +73,6 @@ namespace SteamAge
             Generator.RegisterGenerator(new BasicTerrainGenerator(this));
 
             ParentScreen = WorldScreen;
-
 
             RegisterRecipes(this);
 
@@ -481,10 +480,41 @@ namespace SteamAge
             if (this.Chunks.ContainsKey(ChunkV))
             {
                 TE.Position = Vect;
-                SetBlock(Vect, TE.TileBlock);
-                Vector2 PosInChunk = WorldHelper.GetBlockInChunkPos(Vect);
 
-                Chunks[ChunkV].TileEntities[(int)PosInChunk.X, (int)PosInChunk.Y] = TE;
+                if (TE is IMultiBlockTE) // if TE is multiblock entity
+                {
+                    MultiBlockDef MultiBlock = (TE as IMultiBlockTE).GetMultiBlockDef();
+                    //Vector2 Center = (TE as IMultiBlockTE).GetCenterCoord();
+
+                    for (int y = 0; y < MultiBlock.Size.Y; y++)
+                    {
+                        for (int x = 0; x < MultiBlock.Size.X; x++)
+                        {
+                            SetBlock(Vect + new Vector2(x, y), MultiBlock.BlockTable[x, y]);
+                            SetTileEntity(Vect + new Vector2(x, y), TE);
+
+                            //Chunks[ChunkV].TileEntities[(int)PosInChunk.X + x, (int)PosInChunk.Y + y] = TE;
+                        }
+                    }
+                }
+                else // if TE is single block
+                {
+                    SetBlock(Vect, TE.TileBlock);
+                    Vector2 PosInChunk = WorldHelper.GetBlockInChunkPos(Vect);
+
+                    Chunks[ChunkV].TileEntities[(int)PosInChunk.X, (int)PosInChunk.Y] = TE;
+                }
+            }
+        }
+
+        private void SetTileEntity(Vector2 Position, TileEntity TE)
+        {
+            Vector2 ChunkV = WorldHelper.GetChunkPos(Position);
+
+            if (Chunks.ContainsKey(ChunkV))
+            {
+                Vector2 TEPos = WorldHelper.GetBlockInChunkPos(Position);
+                Chunks[ChunkV].TileEntities[(int)TEPos.X, (int) TEPos.Y] = TE;
             }
         }
 
