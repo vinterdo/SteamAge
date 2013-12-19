@@ -92,15 +92,6 @@ namespace SteamAge
             skeleton.RootBone.Y = Position.Y;
             skeleton.UpdateWorldTransform();
 
-            /*Body = new Body(World.PhysicalWorld);
-            Body.BodyType = BodyType.Dynamic;
-            Body.SetTransform(this.Position, 0f);
-            Vertices V = new Vertices();
-            V.Add(new Vector2(0,0));
-            V.Add(new Vector2(50,0));
-            V.Add(new Vector2(50,50));
-            V.Add(new Vector2(0,50));
-            Fixture = Body.CreateFixture(new PolygonShape(V, 1f));*/
         }
 
         public void Update(GameTime gameTime)
@@ -217,6 +208,12 @@ namespace SteamAge
                     {
                         TileEntity TE =  (B as IEntityBlock).GetNewTE(this.World, Vect * 32 - Vector2.One * 16);
                         TE.Initalize();
+                        TE.Position = Vect;
+                        if (TE is TileEntities.IMultiBlockTE)
+                        {
+                            if (!(TE as TileEntities.IMultiBlockTE).CanBePlaced(Vect)) return false;
+                            
+                        }
                         World.SetBlock(Vect, TE);
                         return true;
                     }

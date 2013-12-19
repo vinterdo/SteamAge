@@ -1,7 +1,6 @@
 ﻿
 check whats wrong with multiple crafting tables (widnow opening/closing logic)
-Add proper multiblock placing/removing
-   when placing MultiBlock fill TileEntity in chunks with referances to one TIleEntity object
+Add nullcheck to MultiBLocks
 Make entites part of chunks
 Add coal ore
 Add coal

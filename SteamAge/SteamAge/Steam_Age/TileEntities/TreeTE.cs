@@ -35,7 +35,7 @@ namespace SteamAge.TileEntities
             this.Name = "Textures/TileEntities/Tree";
             this.Position = Position;
 
-            MultiBlockDef = new MultiBlockDef(new Vector2(3, 10), Position);
+            MultiBlockDef = new MultiBlockDef(new Vector2(3, 10), new Vector2(1, 9));
             for (int y = 0; y < 10; y++)
             {
                 for (int x = 0; x < 3; x++)
@@ -53,6 +53,35 @@ namespace SteamAge.TileEntities
         public MultiBlockDef GetMultiBlockDef()
         {
             return this.MultiBlockDef;
+        }
+
+        public bool CanBePlaced(Vector2 BlockPos)
+        {
+            for (int y = 0; y < MultiBlockDef.Size.Y; y++)
+            {
+                for (int x = 0; x < MultiBlockDef.Size.X; x++)
+                {
+                    if (World.GetBlock(new Vector2(x, y) + Position) != Block.GetBlock(0))
+                    {
+                        return false;
+                    }
+                }
+            }
+            return true;
+        }
+
+        public override void Kill()
+        {
+            for (int y = 0; y < MultiBlockDef.Size.Y; y++)
+            {
+                for (int x = 0; x < MultiBlockDef.Size.X; x++)
+                {
+                    World.SetTileEntity(new Vector2(x, y) + Position, null);
+                    World.SetBlock(new Vector2(x ,y) + Position,  Block.GetBlock(0));
+                }
+            }
+
+            base.Kill();
         }
     }
 

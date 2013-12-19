@@ -165,8 +165,7 @@ namespace SteamAge
 
         private void PlaceBlock()
         {
-
-            if (PlayerChar.PlaceBlock((PlayerHotbar[SelectedStack].ItemStack.Item as Block), (GeneralManager.MousePos + Camera) / 32))
+            if (PlayerChar.PlaceBlock((PlayerHotbar[SelectedStack].ItemStack.Item as Block), new Vector2((int)((GeneralManager.MousePos + Camera).X / 32), (int)((GeneralManager.MousePos + Camera).Y / 32))))
             {
                 PlayerHotbar[SelectedStack].ItemStack.Count--;
                 if (PlayerHotbar[SelectedStack].ItemStack.Count == 0)

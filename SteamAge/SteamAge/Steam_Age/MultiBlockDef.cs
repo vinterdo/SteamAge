@@ -26,7 +26,7 @@ namespace SteamAge
     public class MultiBlockDef
     {
         Vector2 _Size;
-        Vector2 Center;
+        public Vector2 Center;
         public Block[,] BlockTable;
         public Vector2 Size
         {
@@ -55,5 +55,7 @@ namespace SteamAge
                 Logger.Write("Invalid usage of SetBlock function in MultiBLockDefinition");
             }
         }
+
+        
     }
 }

@@ -69,7 +69,7 @@ namespace SteamAge
                 {
                     if (TileEntities[x, y] != null && TileEntities[x, y] is TileEntities.IMultiBlockTE)
                     {
-                        if((TileEntities[x, y] as TileEntities.IMultiBlockTE).GetCenterCoord() == new Vector2(x, y))
+                        if((TileEntities[x, y] as TileEntities.IMultiBlockTE).GetCenterCoord() + Vector2.One == new Vector2(x, y) + this.Position * 16)
                         {
                             Blocks[x, y].Draw(SpriteBatch, new Vector2((int)Position.X + GameWorld.TileWidth * x, (int)Position.Y + GameWorld.TileHeight * y), new Color(LightValues[x, y], LightValues[x, y], LightValues[x, y]), BlockState[x, y]);
                         }

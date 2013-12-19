@@ -27,5 +27,6 @@ namespace SteamAge.TileEntities
     {
         Vector2 GetCenterCoord();
         MultiBlockDef GetMultiBlockDef();
+        bool CanBePlaced(Vector2 BlockPos);
     }
 }

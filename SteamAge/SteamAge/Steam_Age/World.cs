@@ -84,7 +84,7 @@ namespace SteamAge
             InitLightSystem();
 
             TestPlayer = new Player(this, true);
-            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1000), 64));
+            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1002), 64));
             TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1001), 64));
 
             //Fluid = new FluidSimulation(PhysicalWorld);
@@ -472,6 +472,7 @@ namespace SteamAge
             }
         }
 
+
         public void SetBlock(Vector2 Vect, TileEntity TE)
         {
 
@@ -485,15 +486,17 @@ namespace SteamAge
                 {
                     MultiBlockDef MultiBlock = (TE as IMultiBlockTE).GetMultiBlockDef();
                     //Vector2 Center = (TE as IMultiBlockTE).GetCenterCoord();
-
-                    for (int y = 0; y < MultiBlock.Size.Y; y++)
+                    if ((TE as IMultiBlockTE).CanBePlaced(Vect))
                     {
-                        for (int x = 0; x < MultiBlock.Size.X; x++)
+                        for (int y = 0; y < MultiBlock.Size.Y; y++)
                         {
-                            SetBlock(Vect + new Vector2(x, y), MultiBlock.BlockTable[x, y]);
-                            SetTileEntity(Vect + new Vector2(x, y), TE);
+                            for (int x = 0; x < MultiBlock.Size.X; x++)
+                            {
+                                SetBlock(Vect + new Vector2(x, y), MultiBlock.BlockTable[x, y]);
+                                SetTileEntity(Vect + new Vector2(x, y), TE);
 
-                            //Chunks[ChunkV].TileEntities[(int)PosInChunk.X + x, (int)PosInChunk.Y + y] = TE;
+                                //Chunks[ChunkV].TileEntities[(int)PosInChunk.X + x, (int)PosInChunk.Y + y] = TE;
+                            }
                         }
                     }
                 }
@@ -507,7 +510,7 @@ namespace SteamAge
             }
         }
 
-        private void SetTileEntity(Vector2 Position, TileEntity TE)
+        public void SetTileEntity(Vector2 Position, TileEntity TE)
         {
             Vector2 ChunkV = WorldHelper.GetChunkPos(Position);
 
