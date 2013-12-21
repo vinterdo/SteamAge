@@ -10,33 +10,27 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SteamAge;
 
-namespace BasicBlocks
+namespace BaseTerrain
 {
     public class ModMain : BaseMod
     {
         public override void Initalize()
         {
-            StoneBlock StoneBlock = new StoneBlock();
-            GrassBlock GrassBlock = new GrassBlock();
-            WoodBlock WoodBlock = new WoodBlock();
-            Block.RegisterBlock(StoneBlock);
-            Block.RegisterBlock(GrassBlock);
-            Block.RegisterBlock(WoodBlock);
         }
 
         public override void Register()
         {
-            
+
         }
 
         public override void Update()
         {
-            
+
         }
 
         public override void Unload()
         {
-            
+
         }
     }
 }

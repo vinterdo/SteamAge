@@ -84,7 +84,7 @@ namespace SteamAge
             InitLightSystem();
 
             TestPlayer = new Player(this, true);
-            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1002), 64));
+            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(5), 64));
             TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1001), 64));
 
             //Fluid = new FluidSimulation(PhysicalWorld);
