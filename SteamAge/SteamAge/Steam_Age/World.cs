@@ -74,14 +74,10 @@ namespace SteamAge
 
             PhysicalWorld = new World(new Vector2(0, 16 * 9.81f));
 
-            //Generating Spawn Area
-            //Generator.Generate(new Vector2(0,0));
-
             InitLightSystem();
 
             TestPlayer = new Player(this, true);
 
-            //Fluid = new FluidSimulation(PhysicalWorld);
 
             SetBlock(new Vector2(4, 4), new TileEntities.TorchTE(this, new Vector2(128, 128)));
             SetBlock(new Vector2(4, 3), new TileEntities.TreeTE(this, new Vector2(128, 96)));

@@ -23,7 +23,7 @@ using Krypton.Lights;
 
 namespace SteamAge.TileEntities
 {
-    interface IMultiBlockTE
+    public interface IMultiBlockTE
     {
         Vector2 GetCenterCoord();
         MultiBlockDef GetMultiBlockDef();

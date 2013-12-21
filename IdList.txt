@@ -15,7 +15,7 @@
 1000 Torch
 1001 CraftingTable
 1002 Tree1
-1003
+1003 Furnace
 1004
 1005
 1006
