@@ -21,14 +21,19 @@ namespace SteamAge
         public WorldScreen(Game Game, int SizeX, int SizeY)
             : base(Game, SizeX, SizeY)
         {
-            foreach (BaseMod Mod in SteamAge.Mods)
-            {
-                Mod.Initalize();
-            }
 
             EqWindow = new Window(GeneralManager.GetPartialRect(0.29f, 0.29f, 0.42f, 0.42f), new Color(1, 1, 1, 0.7f));
 
             World = new GameWorld(this);
+
+
+            foreach (BaseMod Mod in SteamAge.Mods)
+            {
+                Mod.Initalize(World);
+            }
+
+
+
             Debug = new FarseerPhysics.DebugViews.DebugViewXNA(World.PhysicalWorld);
             Debug.AppendFlags(FarseerPhysics.DebugViewFlags.Shape);
             Debug.AppendFlags(FarseerPhysics.DebugViewFlags.AABB);
@@ -40,6 +45,8 @@ namespace SteamAge
             Debug.LoadContent(Parent.GraphicsDevice, Parent.Content);
 
             this.AddGUI(EqWindow);
+
+            World.PostInit();
         }
 
         public override void Draw(SpriteBatch SpriteBatch, GameTime GameTime)

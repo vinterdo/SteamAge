@@ -12,7 +12,7 @@ namespace SteamAge
         string ModName;
         string ModVersion;
         public abstract void Register();
-        public abstract void Initalize();
+        public abstract void Initalize(GameWorld World);
         public abstract void Update();
         public abstract void Unload();
 

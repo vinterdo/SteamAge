@@ -9,29 +9,23 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SteamAge;
+using SteamAge.Generators;
 
 namespace BaseTerrain
 {
-    public class ModMain : BaseMod
+    public class TreeGenerator : Generator
     {
-        public override void Initalize(GameWorld World)
+        public TreeGenerator(GameWorld World)
+            : base(World)
         {
-            World.Generator.RegisterGenerator(new CaveGenerator(World));
         }
 
-        public override void Register()
+        public override void Initalize()
         {
-
         }
 
-        public override void Update()
+        public override void Generate(Chunk C)
         {
-
-        }
-
-        public override void Unload()
-        {
-
         }
     }
 }

@@ -11,7 +11,7 @@ using Microsoft.Xna.Framework.Media;
 using VAPI;
 using SteamAge;
 
-namespace SteamAge.Generators
+namespace BaseTerrain
 {
     public class CaveGenerator : Generator
     {

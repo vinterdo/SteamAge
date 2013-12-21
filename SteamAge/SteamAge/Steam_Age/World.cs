@@ -69,23 +69,17 @@ namespace SteamAge
             Entities = new List<Entity>();
             Generator = new WorldGenerator(this);
 
-            Generator.RegisterGenerator(new CaveGenerator(this));
-            Generator.RegisterGenerator(new BasicTerrainGenerator(this));
 
             ParentScreen = WorldScreen;
-
-            RegisterRecipes(this);
 
             PhysicalWorld = new World(new Vector2(0, 16 * 9.81f));
 
             //Generating Spawn Area
-            Generator.Generate(new Vector2(0,0));
+            //Generator.Generate(new Vector2(0,0));
 
             InitLightSystem();
 
             TestPlayer = new Player(this, true);
-            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(5), 64));
-            TestPlayer.AddToInv(new ItemStack(Block.GetBlock(1001), 64));
 
             //Fluid = new FluidSimulation(PhysicalWorld);
 
@@ -155,6 +149,18 @@ namespace SteamAge
             LightSystem.Lights.Add(SunLight);
 
         }
+
+        public void PostInit()
+        {
+            Generator.RegisterGenerator(new BasicTerrainGenerator(this));
+
+            RegisterRecipes(this);
+
+            this.GetCurrentPlayer().AddToInv(new ItemStack(Block.GetBlock(5), 64));
+            this.GetCurrentPlayer().AddToInv(new ItemStack(Block.GetBlock(1001), 64));
+
+        }
+
         #endregion
         #region Updating
         //====================================

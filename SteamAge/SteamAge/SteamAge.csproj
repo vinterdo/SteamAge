@@ -92,7 +92,6 @@
     <Compile Include="Steam_Age\Entities\DynamicBody.cs" />
     <Compile Include="Steam_Age\Entities\Entity.cs" />
     <Compile Include="Steam_Age\Generators\BasicTerrainGenerator.cs" />
-    <Compile Include="Steam_Age\Generators\CaveGenerator.cs" />
     <Compile Include="Steam_Age\Generators\Generator.cs" />
     <Compile Include="Steam_Age\Generators\WorldGenerator.cs" />
     <Compile Include="Steam_Age\Items\CoalItem.cs" />

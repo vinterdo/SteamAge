@@ -14,7 +14,7 @@ namespace BasicBlocks
 {
     public class ModMain : BaseMod
     {
-        public override void Initalize()
+        public override void Initalize(GameWorld World)
         {
             StoneBlock StoneBlock = new StoneBlock();
             GrassBlock GrassBlock = new GrassBlock();
