@@ -16,23 +16,67 @@ namespace SteamAge
     {
         GameWorld World;
         FarseerPhysics.DebugViews.DebugViewXNA Debug;
-        public Window EqWindow;
+        
+        // HudWindows
+
+        public Window EqHud;
+        public Window ArmorHud;
+        public Window ChatHud;
+        public Window CraftingHud;
+        public Window DebugHud;
+        public Window ExternalGUIHud;
+        public Window HotbarHud;
+        public Window HpBar;
+        public Window ManaBar;
+        public Window MinimapHud;
+        public Window TooltipHud;
+
 
         public WorldScreen(Game Game, int SizeX, int SizeY)
             : base(Game, SizeX, SizeY)
         {
 
-            EqWindow = new Window(GeneralManager.GetPartialRect(0.29f, 0.29f, 0.42f, 0.42f), new Color(1, 1, 1, 0.7f));
+            EqHud = new Window(new Rectangle(GeneralManager.HalfWidth - 175, GeneralManager.HalfHeight - 146, 350, 146), "Textures/Hud/EqBack"/*new Color(0, 0, 0, 0.4f)*/);
+            Button CloseButton = new Button(new Rectangle(GeneralManager.HalfWidth, GeneralManager.HalfHeight,32, 32), "", GeneralManager.Textures["Textures/GUI/CloseButton"], Color.Gray, Color.White, null);
+            EqHud.AddGUI(CloseButton);
+            this.AddGUI(EqHud);
+
+            CraftingHud = new Window(new Rectangle(GeneralManager.HalfWidth - 175 - 180, GeneralManager.HalfHeight - 146, 180, 216), "Textures/Hud/CraftingBack");
+            this.AddGUI(CraftingHud);
+
+            ArmorHud = new Window(new Rectangle(GeneralManager.HalfWidth + 175, GeneralManager.HalfHeight - 146, 112, 180), "Textures/Hud/ArmorBack");
+            this.AddGUI(ArmorHud);
+
+            ChatHud = new Window(new Rectangle(50, GeneralManager.ScreenY - 300, 400, 300), "Textures/Hud/Chat");
+            this.AddGUI(ChatHud);
+
+            DebugHud = new Window(new Rectangle(GeneralManager.ScreenX - 400 - 50, GeneralManager.ScreenY - 300, 400, 300), "Textures/Hud/Debug");
+            this.AddGUI(DebugHud);
+
+            ExternalGUIHud = new Window(new Rectangle(GeneralManager.HalfWidth - 175, GeneralManager.HalfHeight, 350, 200), "Textures/Hud/ExternalEqBack");
+            this.AddGUI(ExternalGUIHud);
+
+            HotbarHud = new Window(new Rectangle(GeneralManager.HalfWidth - 175, GeneralManager.ScreenY - 44, 350, 44), "Textures/Hud/HotbarBack");
+            this.AddGUI(HotbarHud);
+
+            HpBar = new Window(new Rectangle(0, GeneralManager.ScreenY - 400, 50, 400), "Textures/Hud/HpBar");
+            this.AddGUI(HpBar);
+
+            ManaBar = new Window(new Rectangle(GeneralManager.ScreenX - 50, GeneralManager.ScreenY - 400, 50, 400), "Textures/Hud/ManaBar");
+            this.AddGUI(ManaBar);
+
+            MinimapHud = new Window(new Rectangle(GeneralManager.ScreenX - 300, 0, 300, 300), "Textures/Hud/MinimapBack");
+            this.AddGUI(MinimapHud);
+
+            TooltipHud = new Window(new Rectangle(GeneralManager.HalfWidth - 100,0, 200, 50), "Textures/Hud/Tooltip");
+            this.AddGUI(TooltipHud);
 
             World = new GameWorld(this);
-
 
             foreach (BaseMod Mod in SteamAge.Mods)
             {
                 Mod.Initalize(World);
             }
-
-
 
             Debug = new FarseerPhysics.DebugViews.DebugViewXNA(World.PhysicalWorld);
             Debug.AppendFlags(FarseerPhysics.DebugViewFlags.Shape);
@@ -44,7 +88,6 @@ namespace SteamAge
             Debug.SleepingShapeColor = Color.LightGray;
             Debug.LoadContent(Parent.GraphicsDevice, Parent.Content);
 
-            this.AddGUI(EqWindow);
 
             World.PostInit();
         }
@@ -78,7 +121,7 @@ namespace SteamAge
             }
             if (GeneralManager.CheckKeyEdge(Keys.E))
             {
-                this.EqWindow.Visible = !this.EqWindow.Visible;
+                ChangeEqVisib();
                 return true;
             }
             if (GeneralManager.CheckKeyEdge(Keys.D1))
@@ -134,6 +177,14 @@ namespace SteamAge
 
 
             return false;
+        }
+
+        public void ChangeEqVisib()
+        {
+            this.EqHud.Visible = !this.EqHud.Visible;
+            this.ArmorHud.Visible = !this.ArmorHud.Visible;
+            this.CraftingHud.Visible = !this.CraftingHud.Visible;
+            this.ExternalGUIHud.Visible = !this.ExternalGUIHud.Visible;
         }
 
         public override void EndDraw(SpriteBatch SpriteBatch, GameTime GameTime)

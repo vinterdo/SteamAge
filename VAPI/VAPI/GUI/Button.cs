@@ -31,7 +31,10 @@ namespace VAPI
             this.Background = Background;
             this.ButtonColor = ButtonColor;
             this.ActiveColor = ActiveColor;
-            this.Font = GeneralManager.Fonts[Font];
+            if (Font != null)
+            {
+                this.Font = GeneralManager.Fonts[Font];
+            }
         }
 
 
@@ -42,13 +45,19 @@ namespace VAPI
             if (!IsActive)
             {
                 SpriteBatch.Draw(Background, Position, ButtonColor);
-                Font.DrawText(SpriteBatch, Position, Text, Color.Gray);
+                if (Font != null)
+                {
+                    Font.DrawText(SpriteBatch, Position, Text, Color.Gray);
+                }
                 //SpriteBatch.DrawString(Font, Text, Helper.GetTopLeftFromRect(Position), ButtonColor, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0.5f);
             }
             else
             {
                 SpriteBatch.Draw(Background, Position, ActiveColor);
-                Font.DrawText(SpriteBatch, Position, Text, Color.Gray);
+                if (Font != null)
+                {
+                    Font.DrawText(SpriteBatch, Position, Text, Color.Gray);
+                }
                 //SpriteBatch.DrawString(Font, Text, Helper.GetTopLeftFromRect(Position), ActiveColor, 0f, Vector2.Zero, Scale, SpriteEffects.None, 0.5f);
             
             }

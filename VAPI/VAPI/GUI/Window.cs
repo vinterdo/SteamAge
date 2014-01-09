@@ -13,25 +13,34 @@ namespace VAPI
 {
     public class Window : GUIComponent
     {
-        Color BgColor;
         Rectangle Position;
         public Stack<GUIComponent> GUIComponents;
         public bool Visible = true;
+        Texture2D BgTex;
 
         public Window(Rectangle Position, Color BgColor)
         {
             GUIComponents = new Stack<GUIComponent>();
             this.Position = Position;
-            this.BgColor = BgColor;
+            BgTex = new Texture2D(GeneralManager.GDevice, 1, 1);
+            BgTex.SetData<Color>(new[] { BgColor });
+
+        }
+
+        public Window(Rectangle Position, string TextureName)
+        {
+            GUIComponents = new Stack<GUIComponent>();
+            this.Position = Position;
+            this.BgTex = GeneralManager.Textures[TextureName];
         }
 
         public override void Draw(SpriteBatch SpriteBatch)
         {
             if (Visible)
             {
-                Texture2D BgTex = new Texture2D(SpriteBatch.GraphicsDevice, 1, 1);
-                BgTex.SetData<Color>(new[] { BgColor });
+                
                 SpriteBatch.Draw(BgTex, Position, Color.White);
+                
 
                 foreach (GUIComponent G in GUIComponents)
                 {

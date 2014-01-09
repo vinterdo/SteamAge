@@ -47,7 +47,7 @@ namespace SteamAge.Crafting
                 {
                     RecipeSlots[x, y] = new ItemSlot(GameWorld);
                     RecipeSlots[x, y].Visible = true;
-                    Vector2 UpperLeftPos = Position + new Vector2(x * 32, y * 32);
+                    Vector2 UpperLeftPos = Position + new Vector2(x * 34, y * 34);
                     RecipeSlots[x, y].Position = new Rectangle((int)UpperLeftPos.X, (int)UpperLeftPos.Y, 32, 32);
                     RecipeSlots[x, y].OnStackModified += UpdateGrid;
                     RecipePartIdMatching[x, y] = -1;

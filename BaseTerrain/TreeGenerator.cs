@@ -10,6 +10,7 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using SteamAge;
 using SteamAge.Generators;
+using SteamAge.TileEntities;
 
 namespace BaseTerrain
 {
@@ -26,6 +27,17 @@ namespace BaseTerrain
 
         public override void Generate(Chunk C)
         {
+            for (int y = 1; y < 15; y++)
+            {
+                for (int x = 1; x < 15; x++)
+                {
+                    if (C.Blocks[x - 1,y] == Block.GetBlock(0) && C.Blocks[x - 1,y] == Block.GetBlock(0) && C.Blocks[x - 1,y] == Block.GetBlock(0))
+                    {
+                        //World.SetBlock(new Vector2(x - 11 , y - 2) + C.Position * 32, new TreeTE(World, new Vector2(x - 11, y - 2) + C.Position * 32));
+                        World.SetBlock(new Vector2(x , y) + C.Position * 32, new CraftingTableTE(new Vector2(x , y ) + C.Position * 32, World));
+                    }
+                }
+            }
         }
     }
 }

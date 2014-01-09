@@ -28,7 +28,6 @@ namespace SteamAge
 
         public SteamAge()
         {
-
             CurrentSettings = new GameSettings();
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
@@ -105,6 +104,19 @@ namespace SteamAge
             GeneralManager.LoadTex("Textures/GUI/MainMenuShipBackground3");
             GeneralManager.LoadTex("Textures/GUI/EqBar");
             GeneralManager.LoadTex("Textures/GUI/ItemSlot");
+            GeneralManager.LoadTex("Textures/GUI/CloseButton");
+
+            GeneralManager.LoadTex("Textures/Hud/ArmorBack");
+            GeneralManager.LoadTex("Textures/Hud/Chat");
+            GeneralManager.LoadTex("Textures/Hud/CraftingBack");
+            GeneralManager.LoadTex("Textures/Hud/Debug");
+            GeneralManager.LoadTex("Textures/Hud/EqBack");
+            GeneralManager.LoadTex("Textures/Hud/ExternalEqBack");
+            GeneralManager.LoadTex("Textures/Hud/HotbarBack");
+            GeneralManager.LoadTex("Textures/Hud/HpBar");
+            GeneralManager.LoadTex("Textures/Hud/ManaBar");
+            GeneralManager.LoadTex("Textures/Hud/MinimapBack");
+            GeneralManager.LoadTex("Textures/Hud/Tooltip");
 
             GeneralManager.LoadTex("Textures/Particles/SteamParticle");
 

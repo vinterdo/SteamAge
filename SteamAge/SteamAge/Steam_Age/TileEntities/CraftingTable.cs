@@ -26,9 +26,10 @@ namespace SteamAge.TileEntities
             this.TileBlock = Block.GetBlock(1001);
             this.Name = "Textures/TileEntities/CraftingTable";
 
-            Inventory = new TileEntityGUI(new Rectangle(100, 100, 500, 500));
+            Inventory = new TileEntityGUI(new Rectangle(GeneralManager.HalfWidth - 175 - 180, GeneralManager.HalfHeight - 146, 180, 180), Color.Transparent);
+            
             GameWorld.ParentScreen.AddGUI(Inventory);
-            CraftingGrid = new CraftingGrid(GameWorld, new Vector2(100, 100));
+            CraftingGrid = new CraftingGrid(GameWorld, new Vector2(GeneralManager.HalfWidth - 175 - 180 + 5, GeneralManager.HalfHeight - 146 + 5));
             CraftingGrid.AddToInventory(Inventory);
         }
 

@@ -74,16 +74,16 @@ namespace SteamAge
                     for (int x = 0; x < 10; x++)
                     {
                         PlayerInv[y * 10 + x] = new ItemSlot(World);
-                        PlayerInv[y * 10 + x].Position = GeneralManager.GetPartialRect(0.3f + x * 0.04f, 0.3f + y * 0.04f, 0.037f,0.037f);
+                        PlayerInv[y * 10 + x].Position = new Rectangle(x * (32 + 2) + 5 + GeneralManager.HalfWidth - 175, y * (32 + 2) + 5 +  GeneralManager.HalfHeight - 146,32,32);//GeneralManager.GetPartialRect(0.3f + x * 0.04f, 0.3f + y * 0.04f, 0.037f,0.037f);
                         PlayerInv[y * 10 + x].Visible = true;
-                        World.ParentScreen.EqWindow.AddGUI(PlayerInv[y * 10 + x]);
+                        World.ParentScreen.EqHud.AddGUI(PlayerInv[y * 10 + x]);
                     }
                 }
 
                 for (int x = 0; x < 10; x++)
                 {
                     PlayerHotbar[x] = new ItemSlot(World);
-                    PlayerHotbar[x].Position = GeneralManager.GetPartialRect(0.3f + x * 0.04f, 0.95f, 0.037f, 0.037f);
+                    PlayerHotbar[x].Position = new Rectangle(GeneralManager.HalfWidth - 175+ 5 + x * 34, GeneralManager.ScreenY - 44 + 5 ,32,32);
                     PlayerHotbar[x].Visible = true;
                     World.ParentScreen.AddGUI(PlayerHotbar[x]);
                 }

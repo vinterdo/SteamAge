@@ -17,6 +17,7 @@ namespace BaseTerrain
         public override void Initalize(GameWorld World)
         {
             World.Generator.RegisterGenerator(new CaveGenerator(World));
+            World.Generator.RegisterGenerator(new TreeGenerator(World));
         }
 
         public override void Register()

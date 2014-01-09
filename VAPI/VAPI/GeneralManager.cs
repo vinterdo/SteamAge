@@ -152,5 +152,20 @@ namespace VAPI
             return new Rectangle((int)(ScreenX * PartX), (int)(ScreenY * PartY), (int)(ScreenX * PartWidth), (int)(ScreenY * PartHeight));
         }
 
+        public static int HalfWidth
+        {
+            get
+            {
+                return (int)ScreenX / 2;
+            }
+        }
+
+        public static int HalfHeight
+        {
+            get
+            {
+                return (int)ScreenY / 2;
+            }
+        }
     }
 }
